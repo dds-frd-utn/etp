@@ -2,12 +2,10 @@ package org.utn.frd.dds.etp.controller.impl;
 
 import com.etp.crud.controller.impl.CrudControllerImpl;
 import com.google.common.collect.Lists;
-import com.google.gson.Gson;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;

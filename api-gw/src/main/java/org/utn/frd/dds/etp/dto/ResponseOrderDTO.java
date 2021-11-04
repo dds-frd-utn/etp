@@ -1,6 +1,5 @@
 package org.utn.frd.dds.etp.dto;
 
-import org.utn.frd.dds.etp.entity.Local;
 import org.utn.frd.dds.etp.entity.User;
 
 import java.time.LocalDateTime;
@@ -10,8 +9,6 @@ public class ResponseOrderDTO {
     private String uuid;
 
     private LocalDateTime localDateTime;
-
-    private Local local;
 
     private User user;
 
@@ -31,14 +28,6 @@ public class ResponseOrderDTO {
         this.localDateTime = localDateTime;
     }
 
-    public Local getLocal() {
-        return local;
-    }
-
-    public void setLocal(Local local) {
-        this.local = local;
-    }
-
     public User getUser() {
         return user;
     }
@@ -52,7 +41,6 @@ public class ResponseOrderDTO {
         return "ResponseOrderDTO{" +
                 "uuid='" + uuid + '\'' +
                 ", localDateTime=" + localDateTime +
-                ", local=" + local +
                 ", user=" + user +
                 '}';
     }

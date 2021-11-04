@@ -37,7 +37,7 @@ public class OrderControllerImpl extends CrudControllerImpl<Order, String> imple
 
 	@RequestMapping(value="/create", method= RequestMethod.POST)
 	@ApiOperation(value = "Crear una orden", notes = "Crear una nueva Orden")
-	public ResponseEntity<Order> create(@RequestBody RequestOrderDTO requestOrderDTO, BindingResult bindingResult){
+	public ResponseEntity<ResponseOrderDTO> create(@RequestBody RequestOrderDTO requestOrderDTO, BindingResult bindingResult){
 
 		if(!bindingResult.hasErrors()){
 
@@ -45,7 +45,9 @@ public class OrderControllerImpl extends CrudControllerImpl<Order, String> imple
 
 			if(order != null) {
 
-				return ResponseEntity.ok(order);
+				ResponseOrderDTO responseOrderDTO = OrderUtil.getResponseOrderDTO(order);
+
+				return ResponseEntity.ok(responseOrderDTO);
 			}
 		}
 
@@ -54,12 +56,12 @@ public class OrderControllerImpl extends CrudControllerImpl<Order, String> imple
 
 	@RequestMapping(value="/delete/{uuid}",method = RequestMethod.DELETE)
 	@ApiOperation(value = "Eliminar una orden", notes = "Eliminar una Orden")
-	public ResponseEntity<HttpStatus> delete(@PathVariable String uuid){
+	public ResponseEntity delete(@PathVariable String uuid){
 
 		try{
 			super.service.deleteById(uuid);
 
-			return ResponseEntity.ok(HttpStatus.OK);
+			return ResponseEntity.ok().build();
 		} catch (EntityNotFoundException e) {
 
 			return ResponseEntity.notFound().build();
@@ -68,13 +70,11 @@ public class OrderControllerImpl extends CrudControllerImpl<Order, String> imple
 
 	@RequestMapping(value="/find/{uuid}", method= RequestMethod.POST)
 	@ApiOperation(value = "Buscar Orden por Id", notes = "Buscar Orden por Id")
-	public ResponseEntity<ResponseOrderDTO>  findOrderById(@PathVariable String uuid){
+	public ResponseEntity<Order>  findOrderById(@PathVariable String uuid){
 
 		Optional<Order> order = super.service.findById(uuid);
 
-		ResponseOrderDTO responseOrderDTO = OrderUtil.getResponseOrderDTO(order.get());
-
-		return ResponseEntity.ok(responseOrderDTO);
+		return ResponseEntity.ok(order.get());
 	}
 
 	@RequestMapping(value="/findAll/{uuid}", method= RequestMethod.POST)

@@ -1,10 +1,6 @@
 package org.utn.frd.dds.etp.dto;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.utn.frd.dds.etp.entity.Order;
 import org.utn.frd.dds.etp.entity.Product;
-
-import javax.persistence.*;
 
 public class RequestOrderItemDTO {
 
@@ -13,8 +9,6 @@ public class RequestOrderItemDTO {
     private Integer presentation;
 
     private Integer count;
-
-    private Order order;
 
     public Product getProduct() {
         return product;
@@ -40,21 +34,12 @@ public class RequestOrderItemDTO {
         this.count = count;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
     @Override
     public String toString() {
         return "RequestOrderItemDTO{" +
                 "product=" + product +
                 ", presentation=" + presentation +
                 ", count=" + count +
-                ", order=" + order +
                 '}';
     }
 }

@@ -30,16 +30,13 @@ public class OrderItemControllerImpl extends CrudControllerImpl<OrderItem, Strin
 
 	@RequestMapping(value="/add", method= RequestMethod.POST)
 	@ApiOperation(value = "Agregar un item a una orden", notes = "Agregar un item a una orden")
-	public ResponseEntity<OrderItem> create(@RequestBody RequestOrderItemDTO requestOrderItemDTO, BindingResult bindingResult){
+	public ResponseEntity create(@RequestBody RequestOrderItemDTO requestOrderItemDTO, BindingResult bindingResult){
 
 		if(!bindingResult.hasErrors()){
 
-			OrderItem orderItem = super.service.save(OrderItemUtil.getOrderItem(requestOrderItemDTO));
+			super.service.save(OrderItemUtil.getOrderItem(requestOrderItemDTO));
 
-			if(orderItem != null) {
-
-				return ResponseEntity.ok(orderItem);
-			}
+			return ResponseEntity.ok().build();
 		}
 
 		return ResponseEntity.badRequest().build();
@@ -52,7 +49,7 @@ public class OrderItemControllerImpl extends CrudControllerImpl<OrderItem, Strin
 		try{
 			super.service.deleteById(uuid);
 
-			return ResponseEntity.ok(HttpStatus.OK);
+			return ResponseEntity.ok().build();
 		} catch (EntityNotFoundException e) {
 
 			return ResponseEntity.notFound().build();

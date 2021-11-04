@@ -7,6 +7,7 @@ import org.utn.frd.dds.etp.entity.Order;
 import org.utn.frd.dds.etp.entity.OrderItem;
 
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -17,9 +18,9 @@ public class OrderUtil {
 
         Order order = new Order();
 
-        order.setLocalDateTime(requestOrderDTO.getLocalDateTime());
-        order.setLocal(requestOrderDTO.getLocal());
-        order.setUser(requestOrderDTO.getUser());
+        order.setLocalDateTime(LocalDateTime.now());
+//        order.setLocal(requestOrderDTO );
+//        order.setUser(requestOrderDTO.getUser());
 
         return order;
     }
@@ -29,7 +30,7 @@ public class OrderUtil {
         ResponseOrderDTO responseOrderDTO = new ResponseOrderDTO();
 
         responseOrderDTO.setUuid(order.getUuid());
-        responseOrderDTO.setLocal(order.getLocal());
+        // responseOrderDTO.setLocal(order.getLocal());
         responseOrderDTO.setLocalDateTime(order.getLocalDateTime());
         responseOrderDTO.setUser(order.getUser());
 

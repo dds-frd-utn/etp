@@ -5,13 +5,10 @@ import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.utn.frd.dds.etp.controller.ProductController;
 import org.utn.frd.dds.etp.dto.ResponseProductDTO;
-import org.utn.frd.dds.etp.dto.ResponseUserDTO;
 import org.utn.frd.dds.etp.entity.Product;
 import org.utn.frd.dds.etp.util.ProductUtil;
 

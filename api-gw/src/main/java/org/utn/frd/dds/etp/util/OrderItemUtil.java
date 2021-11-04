@@ -14,7 +14,8 @@ public class OrderItemUtil {
 
         OrderItem orderItem = new OrderItem();
 
-        orderItem.setOrder(requestOrderItemDTO.getOrder());
+        // TODO:
+        // orderItem.setOrder(requestOrderItemDTO.getOrder());
         orderItem.setCount(requestOrderItemDTO.getCount());
         orderItem.setPresentation(requestOrderItemDTO.getPresentation());
         orderItem.setProduct(requestOrderItemDTO.getProduct());
