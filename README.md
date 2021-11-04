@@ -7,7 +7,6 @@ https://drive.google.com/file/d/1-eznWEZxRHfv7B_oC2J5rp5U8yQcMFb_/view?usp=shari
 
 ![gif](https://64.media.tumblr.com/a49d31b996409669b28745d2bd93e9ce/affa10ed2b220eaa-d8/s540x810/0435e47cb57b0aecab1553f55ee066185889b996.gifv)
 
-
 Para esta última etapa nos enfocamos en realizar la implementación de la arquitectura para la funcionalidad principal de nuestro proyecto:
   + Crear un usuario.
   + Crear una orden de compra.
@@ -38,3 +37,7 @@ Utilizamos este tipo de herramienta para que el frontend se integre.
 
 ![swagger](https://64.media.tumblr.com/515c3846f015f09c9b472fc473b91226/fa74c26f155bbc73-42/s1280x1920/08cf0c05ff06f59859bf4f507b20e69cd04b87f0.jpg)
 
+## Interfaz
+Para realizar el prototipo de la interfaz utilizamos el programa ___Figma___. Ya que sentimos que ofrece todas las herramientas necesarias para diseñar un proyecto. Y nos permitió trabajar en simultaneo de manera online a tiempo real.
+
+https://www.figma.com/file/Txnyny8Ag66pLSfLFnnVYL/Escanea-Tus-Productos?node-id=74%3A412
