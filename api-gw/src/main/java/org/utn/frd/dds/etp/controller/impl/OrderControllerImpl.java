@@ -1,12 +1,18 @@
 package org.utn.frd.dds.etp.controller.impl;
 
 import com.etp.crud.controller.impl.CrudControllerImpl;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +24,11 @@ import org.utn.frd.dds.etp.dto.ResponseUserDTO;
 import org.utn.frd.dds.etp.entity.Order;
 import org.utn.frd.dds.etp.service.impl.OrderServiceImpl;
 import org.utn.frd.dds.etp.util.OrderUtil;
+import org.utn.frd.dds.etp.util.QR;
 import org.utn.frd.dds.etp.util.UserUtil;
 
 import javax.persistence.EntityNotFoundException;
+import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -86,11 +94,13 @@ public class OrderControllerImpl extends CrudControllerImpl<Order, String> imple
 		return ResponseEntity.ok(orders);
 	}
 
-	@RequestMapping(value="/qr/{uuid}",method = RequestMethod.GET)
+	@RequestMapping(value="/qr/{uuid}",method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
 	@ApiOperation(value = "Obtener codigo QR", notes = "Obtener codigo QR")
-	public String getQR(@PathVariable String uuid){
+	public BufferedImage getQR(@PathVariable String uuid) throws WriterException {
 
-		return orderService.getQR(uuid);
+		orderService.getQR(uuid);
+
+		return QR.createQR(uuid);
 	}
 
 	@RequestMapping(value="/csv/{uuid}",method = RequestMethod.GET)
