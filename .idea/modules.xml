@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/api-gw/api-gw.iml" filepath="$PROJECT_DIR$/api-gw/api-gw.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/etp.iml" filepath="$PROJECT_DIR$/.idea/etp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fwk-service/fwk-service.iml" filepath="$PROJECT_DIR$/fwk-service/fwk-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mercantilandina/pedidos.iml" filepath="$PROJECT_DIR$/mercantilandina/pedidos.iml" />
+    </modules>
+  </component>
+</project>
