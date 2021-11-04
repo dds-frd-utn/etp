@@ -15,7 +15,7 @@ README
 En este repositorio se encuentra la documentación de la etapa final del trabajo práctico del grupo 3. El cual tiene cómo proyecto la aplicación “Escanea Tus Productos”.
 Nuestra aplicación tiene como fin que el cliente escanee sus propios productos a medida que realiza la compra, el cliente creará una orden de compra, el cual contendrá un listado de los distintos productos que han sido escaneados. Al cerrar dicha orden, se generaría un código QR que mostraría el detalle de la compra, y que debe ser escaneado por el cajero.
 https://drive.google.com/file/d/1-eznWEZxRHfv7B_oC2J5rp5U8yQcMFb_/view?usp=sharing
-*si le hago más zoom se caga la imagen*
+
 Para esta última etapa nos enfocamos en realizar la implementación de la arquitectura para la funcionalidad principal de nuestro proyecto:
 Crear un usuario.
 Crear una orden de compra.
