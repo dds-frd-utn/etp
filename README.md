@@ -5,8 +5,12 @@ Nuestra aplicación tiene como fin que el cliente escanee sus propios productos 
 
 https://drive.google.com/file/d/1-eznWEZxRHfv7B_oC2J5rp5U8yQcMFb_/view?usp=sharing
 
+<div align="center">
+
 ![gif](https://64.media.tumblr.com/6a2a1cf3bd8f53d98c6f4f4c290b0b13/a7e3e9f753668b2a-45/s540x810/574177fd216133795423aeefe64f1090d3ad9c85.gifv)
 
+</div>  
+  
 Para esta última etapa nos enfocamos en realizar la implementación de la arquitectura para la funcionalidad principal de nuestro proyecto:
   + Crear un usuario.
   + Crear una orden de compra.
