@@ -9,6 +9,8 @@ https://drive.google.com/file/d/1-eznWEZxRHfv7B_oC2J5rp5U8yQcMFb_/view?usp=shari
 
 ![gif](https://francisnc.tumblr.com/post/667064230293504000)
 
+![gif](https://francisnc.tumblr.com/post/622290931682623488)
+
 Para esta última etapa nos enfocamos en realizar la implementación de la arquitectura para la funcionalidad principal de nuestro proyecto:
   + Crear un usuario.
   + Crear una orden de compra.
