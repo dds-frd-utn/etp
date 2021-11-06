@@ -3,8 +3,6 @@
 En este repositorio se encuentra la documentación de la etapa final del trabajo práctico del grupo 3. El cual tiene cómo proyecto la aplicación “Escanea Tus Productos”.
 Nuestra aplicación tiene como fin que el cliente escanee sus propios productos a medida que realiza la compra, el cliente creará una orden de compra, el cual contendrá un listado de los distintos productos que han sido escaneados. Al cerrar dicha orden, se generaría un código QR que mostraría el detalle de la compra, y que debe ser escaneado por el cajero.
 
-https://drive.google.com/file/d/1-eznWEZxRHfv7B_oC2J5rp5U8yQcMFb_/view?usp=sharing
-
 <div align="center">
 
 ![gif](https://64.media.tumblr.com/390d6141cd7323c0ead1e14a6df621ec/544865017f376f61-d8/s250x400/f160233304741b1e60e58453ff9b1594fad31790.gifv)
