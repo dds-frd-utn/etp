@@ -11,6 +11,8 @@ https://drive.google.com/file/d/1-eznWEZxRHfv7B_oC2J5rp5U8yQcMFb_/view?usp=shari
 
 ![gif](https://francisnc.tumblr.com/post/622290931682623488)
 
+![reemplazar por una animación del juego](https://66.media.tumblr.com/d1ce4491af3a1c389a77a13bc66b020f/afbb9722cf946bc9-02/s400x600/3ef8771179090194be804a0db12b8ebd06523ca7.gifv)
+
 Para esta última etapa nos enfocamos en realizar la implementación de la arquitectura para la funcionalidad principal de nuestro proyecto:
   + Crear un usuario.
   + Crear una orden de compra.
