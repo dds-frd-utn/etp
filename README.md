@@ -7,7 +7,7 @@ https://drive.google.com/file/d/1-eznWEZxRHfv7B_oC2J5rp5U8yQcMFb_/view?usp=shari
 
 <div align="center">
 
-![gif](https://64.media.tumblr.com/6a2a1cf3bd8f53d98c6f4f4c290b0b13/a7e3e9f753668b2a-45/s540x810/574177fd216133795423aeefe64f1090d3ad9c85.gifv)
+![gif](https://64.media.tumblr.com/390d6141cd7323c0ead1e14a6df621ec/544865017f376f61-d8/s250x400/f160233304741b1e60e58453ff9b1594fad31790.gifv)
 
 </div>  
   
