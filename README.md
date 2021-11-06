@@ -5,13 +5,7 @@ Nuestra aplicación tiene como fin que el cliente escanee sus propios productos 
 
 https://drive.google.com/file/d/1-eznWEZxRHfv7B_oC2J5rp5U8yQcMFb_/view?usp=sharing
 
-![gif](https://64.media.tumblr.com/a49d31b996409669b28745d2bd93e9ce/affa10ed2b220eaa-d8/s540x810/0435e47cb57b0aecab1553f55ee066185889b996.gifv)
-
-![gif](https://64.media.tumblr.com/7cdc24ac84401e1d026cc100f32177f4/1424b0b0b339ded0-05/s250x400/a2d2805aa98b4a9a4ca36133953c15e7c7c80842.gifv)
-
-![gif](https://64.media.tumblr.com/7cdc24ac84401e1d026cc100f32177f4/5b8163d48cfca010-1b/s250x400/a7a792d521f692d4a4dc83afb9c5106ddfb54a92.gifv)
-
-![reemplazar por una animación del juego](https://66.media.tumblr.com/d1ce4491af3a1c389a77a13bc66b020f/afbb9722cf946bc9-02/s400x600/3ef8771179090194be804a0db12b8ebd06523ca7.gifv)
+![gif](https://64.media.tumblr.com/6a2a1cf3bd8f53d98c6f4f4c290b0b13/a7e3e9f753668b2a-45/s540x810/574177fd216133795423aeefe64f1090d3ad9c85.gifv)
 
 Para esta última etapa nos enfocamos en realizar la implementación de la arquitectura para la funcionalidad principal de nuestro proyecto:
   + Crear un usuario.
