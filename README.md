@@ -7,9 +7,9 @@ https://drive.google.com/file/d/1-eznWEZxRHfv7B_oC2J5rp5U8yQcMFb_/view?usp=shari
 
 ![gif](https://64.media.tumblr.com/a49d31b996409669b28745d2bd93e9ce/affa10ed2b220eaa-d8/s540x810/0435e47cb57b0aecab1553f55ee066185889b996.gifv)
 
-![gif](https://francisnc.tumblr.com/post/667064230293504000)
+![gif](https://64.media.tumblr.com/7cdc24ac84401e1d026cc100f32177f4/1424b0b0b339ded0-05/s250x400/a2d2805aa98b4a9a4ca36133953c15e7c7c80842.gifv)
 
-![gif](https://francisnc.tumblr.com/post/622290931682623488)
+![gif](https://64.media.tumblr.com/7cdc24ac84401e1d026cc100f32177f4/5b8163d48cfca010-1b/s250x400/a7a792d521f692d4a4dc83afb9c5106ddfb54a92.gifv)
 
 ![reemplazar por una animación del juego](https://66.media.tumblr.com/d1ce4491af3a1c389a77a13bc66b020f/afbb9722cf946bc9-02/s400x600/3ef8771179090194be804a0db12b8ebd06523ca7.gifv)
 
