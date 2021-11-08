@@ -16,7 +16,8 @@ public class QR {
 
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
 
-        String url = "http://localhost:8280/etp/orders/csv/" + orderUUID;
+        String url = "http://etp2021.ddns.net:8080/etp/orders/csv/" + orderUUID;
+
 
         BitMatrix bitMatrix = qrCodeWriter.encode(url, BarcodeFormat.QR_CODE, 250, 250);
         return MatrixToImageWriter.toBufferedImage(bitMatrix);

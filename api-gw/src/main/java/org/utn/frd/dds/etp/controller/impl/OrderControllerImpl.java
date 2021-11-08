@@ -1,47 +1,40 @@
 package org.utn.frd.dds.etp.controller.impl;
 
-import com.etp.crud.controller.impl.CrudControllerImpl;
-import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
-import com.google.zxing.client.j2se.MatrixToImageWriter;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import org.utn.frd.dds.etp.controller.OrderController;
 import org.utn.frd.dds.etp.dto.RequestOrderDTO;
 import org.utn.frd.dds.etp.dto.ResponseOrderDTO;
-import org.utn.frd.dds.etp.dto.ResponseUserDTO;
 import org.utn.frd.dds.etp.entity.Order;
 import org.utn.frd.dds.etp.service.impl.OrderServiceImpl;
 import org.utn.frd.dds.etp.util.OrderUtil;
 import org.utn.frd.dds.etp.util.QR;
-import org.utn.frd.dds.etp.util.UserUtil;
 
 import javax.persistence.EntityNotFoundException;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("orders")
 @Api(tags ="Orders", description = "Manejo de ordenes.", position = 2)
-public class OrderControllerImpl extends CrudControllerImpl<Order, String> implements OrderController {
+public class OrderControllerImpl {
 
-	private static final Log log = LogFactory.getLog(OrderController.class);
+	private static final Log log = LogFactory.getLog(OrderControllerImpl.class);
 
     @Autowired
-	OrderServiceImpl orderService;
+	OrderServiceImpl service;
 
 	@RequestMapping(value="/create", method= RequestMethod.POST)
 	@ApiOperation(value = "Crear una orden", notes = "Crear una nueva Orden")
@@ -49,7 +42,7 @@ public class OrderControllerImpl extends CrudControllerImpl<Order, String> imple
 
 		if(!bindingResult.hasErrors()){
 
-			Order order = super.service.save(OrderUtil.getOrder(requestOrderDTO));
+			Order order = service.save(OrderUtil.getOrder(requestOrderDTO));
 
 			if(order != null) {
 
@@ -67,7 +60,7 @@ public class OrderControllerImpl extends CrudControllerImpl<Order, String> imple
 	public ResponseEntity delete(@PathVariable String uuid){
 
 		try{
-			super.service.deleteById(uuid);
+			service.deleteById(uuid);
 
 			return ResponseEntity.ok().build();
 		} catch (EntityNotFoundException e) {
@@ -80,7 +73,7 @@ public class OrderControllerImpl extends CrudControllerImpl<Order, String> imple
 	@ApiOperation(value = "Buscar Orden por Id", notes = "Buscar Orden por Id")
 	public ResponseEntity<Order>  findOrderById(@PathVariable String uuid){
 
-		Optional<Order> order = super.service.findById(uuid);
+		Optional<Order> order = service.findById(uuid);
 
 		return ResponseEntity.ok(order.get());
 	}
@@ -89,7 +82,9 @@ public class OrderControllerImpl extends CrudControllerImpl<Order, String> imple
 	@ApiOperation(value = "Buscar todas las ordenes de un usuario", notes = "Buscar todas las ordenes de un usuario.")
 	public ResponseEntity<List<Order>>findAll(@PathVariable String uuid){
 
-		List<Order> orders = super.service.findById(uuid).stream().collect(Collectors.toList());
+		// List<Order> orders = super.service.findById(uuid).stream().collect(Collectors.toList());
+
+		List<Order> orders = new ArrayList<>();
 
 		return ResponseEntity.ok(orders);
 	}
@@ -98,7 +93,7 @@ public class OrderControllerImpl extends CrudControllerImpl<Order, String> imple
 	@ApiOperation(value = "Obtener codigo QR", notes = "Obtener codigo QR")
 	public BufferedImage getQR(@PathVariable String uuid) throws WriterException {
 
-		orderService.getQR(uuid);
+		// OrderService.getQR(uuid);
 
 		return QR.createQR(uuid);
 	}
@@ -107,9 +102,16 @@ public class OrderControllerImpl extends CrudControllerImpl<Order, String> imple
 	@ApiOperation(value = "Obtener CSV de una orden", notes = "Obtener CSV de una orden")
 	public ResponseEntity<HttpStatus> getCSV(@PathVariable String uuid){
 
-		orderService.getCSV(uuid);
+		// orderService.getCSV(uuid);
 
-		return ResponseEntity.ok(HttpStatus.OK);
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + uuid + ".csv");
+		// defining the custom Content-Type
+		responseHeaders.set(HttpHeaders.CONTENT_TYPE, "text/csv");
+
+		String data = "SKU;COUNT\n11540-1;2\n20322-1;5\n24749-1;3";
+		return new ResponseEntity(data, responseHeaders, HttpStatus.OK);
+
 	}
 
 }

@@ -12,8 +12,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="api-gw" target="11" />
-      <module name="fwk-service" target="11" />
+      <module name="api-gw" target="1.8" />
+      <module name="fwk-service" target="1.8" />
       <module name="models" target="11" />
       <module name="pedidos" target="1.8" />
     </bytecodeTargetLevel>

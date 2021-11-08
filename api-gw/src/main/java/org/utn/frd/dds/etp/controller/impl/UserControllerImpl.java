@@ -1,18 +1,18 @@
 package org.utn.frd.dds.etp.controller.impl;
 
-import com.etp.crud.controller.impl.CrudControllerImpl;
 import com.google.common.collect.Lists;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.utn.frd.dds.etp.controller.UserController;
 import org.utn.frd.dds.etp.dto.RequestUserDTO;
 import org.utn.frd.dds.etp.dto.ResponseUserDTO;
 import org.utn.frd.dds.etp.entity.User;
+import org.utn.frd.dds.etp.service.impl.UserServiceImpl;
 import org.utn.frd.dds.etp.util.UserUtil;
 
 import javax.persistence.EntityNotFoundException;
@@ -22,9 +22,12 @@ import java.util.Optional;
 @RestController
 @RequestMapping("users")
 @Api(tags ="Users", description = "Manejo de usuarios.", position = 1)
-public class UserControllerImpl extends CrudControllerImpl<User, String> implements UserController {
+public class UserControllerImpl {
 
-	private static final Log log = LogFactory.getLog(UserController.class);
+	private static final Log log = LogFactory.getLog(UserControllerImpl.class);
+
+	@Autowired
+	UserServiceImpl service;
 
 	@RequestMapping(value="/create", method= RequestMethod.POST)
 	@ApiOperation(value = "Crear un usuario", notes = "Crear un usuario")
@@ -32,7 +35,7 @@ public class UserControllerImpl extends CrudControllerImpl<User, String> impleme
 
 		if(!bindingResult.hasErrors()){
 
-			User user = super.service.save(UserUtil.getUser(requestUserDTO));
+			User user = service.save(UserUtil.getUser(requestUserDTO));
 
 			if(user != null) {
 
@@ -48,7 +51,7 @@ public class UserControllerImpl extends CrudControllerImpl<User, String> impleme
 	public ResponseEntity<String> delete(@PathVariable String uuid){
 
 		try {
-			super.service.deleteById(uuid);
+			service.deleteById(uuid);
 
 			return ResponseEntity.ok().build();
 		} catch (EntityNotFoundException e) {
@@ -61,7 +64,7 @@ public class UserControllerImpl extends CrudControllerImpl<User, String> impleme
 	@ApiOperation(value = "Buscar usuario por Id", notes = "Buscar usuario por Id")
 	public ResponseEntity<ResponseUserDTO> findUserById(@PathVariable String uuid){
 
-		Optional<User> user = super.service.findById(uuid);
+		Optional<User> user = service.findById(uuid);
 
 		ResponseUserDTO responseUserDTO = UserUtil.getResponseUserDTO(user.get());
 
@@ -72,7 +75,7 @@ public class UserControllerImpl extends CrudControllerImpl<User, String> impleme
 	//@ApiOperation(value = "Buscar todos los usuarios", notes = "Buscar todos los usuarios.")
 	public List<User> findAllUsers(){
 
-		return Lists.newArrayList(super.service.findAll());
+		return Lists.newArrayList(service.findAll());
 	}
 
 }

@@ -1,11 +1,12 @@
 package org.utn.frd.dds.etp.service.impl;
 
-import com.etp.crud.service.impl.CrudServiceImpl;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.utn.frd.dds.etp.entity.OrderItem;
-import org.utn.frd.dds.etp.entity.Product;
-import org.utn.frd.dds.etp.service.OrderItemService;
-import org.utn.frd.dds.etp.service.OrderService;
+import org.utn.frd.dds.etp.repository.OrderItemRepository;
+import org.utn.frd.dds.etp.repository.OrderRepository;
 
 import javax.transaction.Transactional;
 
@@ -15,6 +16,17 @@ import javax.transaction.Transactional;
  */
 @Service
 @Transactional
-public class OrderItemServiceImpl extends CrudServiceImpl<OrderItem, String> implements OrderItemService {
+public class OrderItemServiceImpl extends ServiceImpl<OrderItem, String> {
+
+    private static final Log log = LogFactory.getLog(OrderItemServiceImpl.class);
+
+    @Autowired
+    OrderItemRepository repository;
+
+    @Override
+    public OrderItemRepository getRepository() {
+        return repository;
+    }
+
 
 }

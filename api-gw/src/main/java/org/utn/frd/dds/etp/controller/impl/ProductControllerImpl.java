@@ -1,15 +1,15 @@
 package org.utn.frd.dds.etp.controller.impl;
 
-import com.etp.crud.controller.impl.CrudControllerImpl;
 import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.utn.frd.dds.etp.controller.ProductController;
 import org.utn.frd.dds.etp.dto.ResponseProductDTO;
 import org.utn.frd.dds.etp.entity.Product;
+import org.utn.frd.dds.etp.service.impl.ProductServiceImpl;
 import org.utn.frd.dds.etp.util.ProductUtil;
 
 import javax.persistence.EntityNotFoundException;
@@ -18,15 +18,18 @@ import java.util.Optional;
 
 //@RestController
 //@RequestMapping("products")
-public class ProductControllerImpl extends CrudControllerImpl<Product, String> implements ProductController {
+public class ProductControllerImpl {
 
-	private static final Log log = LogFactory.getLog(ProductController.class);
+	private static final Log log = LogFactory.getLog(ProductControllerImpl.class);
+
+	@Autowired
+	ProductServiceImpl service;
 
 	// @RequestMapping(value="/create", method= RequestMethod.POST)
 	// @ApiOperation(value = "Crear un producto", notes = "Crear un producto.")
 	public ResponseEntity<Product> create(@RequestBody Product product){
 
-		return ResponseEntity.ok(super.service.save(product));
+		return ResponseEntity.ok(service.save(product));
 	}
 
 	// @RequestMapping(value="/delete/{uuid}",method = RequestMethod.DELETE)
@@ -34,7 +37,7 @@ public class ProductControllerImpl extends CrudControllerImpl<Product, String> i
 	public ResponseEntity<String> delete(@PathVariable String uuid){
 
 		try {
-			super.service.deleteById(uuid);
+			service.deleteById(uuid);
 
 			return ResponseEntity.ok().build();
 		} catch (EntityNotFoundException e) {
@@ -47,7 +50,7 @@ public class ProductControllerImpl extends CrudControllerImpl<Product, String> i
 	@ApiOperation(value = "Buscar producto por Id", notes = "Buscar producto por uuid.")
 	public ResponseEntity<ResponseProductDTO>  findProductById(@PathVariable String uuid){
 
-		Optional<Product> product = super.service.findById(uuid);
+		Optional<Product> product = service.findById(uuid);
 
 		ResponseProductDTO responseProductDTO = ProductUtil.getResponseUserDTO(product.get());
 
@@ -58,7 +61,7 @@ public class ProductControllerImpl extends CrudControllerImpl<Product, String> i
 	@ApiOperation(value = "Buscar todos los productos", notes = "Buscar todos los productos.")
 	public ResponseEntity<List<Product>> productFindAll(){
 
-		List<Product> products = Lists.newArrayList(super.service.findAll());
+		List<Product> products = Lists.newArrayList(service.findAll());
 
 		return ResponseEntity.ok(products);
 	}

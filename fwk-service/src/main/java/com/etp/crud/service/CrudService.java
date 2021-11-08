@@ -17,7 +17,7 @@ import com.etp.crud.repository.CrudRepository;
  */
 public interface CrudService<T, ID> {
 	
-	CrudRepository<T, ID> getRepository1();
+	CrudRepository<T, ID> getRepository();
 	
 	Iterable<T> findAll();
 

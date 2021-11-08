@@ -3,8 +3,12 @@ package org.utn.frd.dds.etp.util;
 import org.utn.frd.dds.etp.dto.RequestOrderDTO;
 import org.utn.frd.dds.etp.dto.RequestOrderItemDTO;
 import org.utn.frd.dds.etp.dto.ResponseOrderDTO;
+import org.utn.frd.dds.etp.entity.Local;
 import org.utn.frd.dds.etp.entity.Order;
 import org.utn.frd.dds.etp.entity.OrderItem;
+import org.utn.frd.dds.etp.entity.User;
+import org.utn.frd.dds.etp.template.LocalTemplate;
+import org.utn.frd.dds.etp.template.UserTemplate;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -16,9 +20,18 @@ public class OrderUtil {
 
     public static Order getOrder(RequestOrderDTO requestOrderDTO) {
 
-        Order order = new Order();
+        User user = UserTemplate.getUser();
 
+        Local local = LocalTemplate.getLocal();
+
+        Order order = new Order();
         order.setLocalDateTime(LocalDateTime.now());
+        order.setUser(user);
+        order.setLocal(local);
+
+
+
+
 //        order.setLocal(requestOrderDTO );
 //        order.setUser(requestOrderDTO.getUser());
 

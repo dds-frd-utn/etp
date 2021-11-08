@@ -23,7 +23,6 @@ import com.etp.crud.service.CrudService;
 @Controller
 public class CrudControllerImpl<T, ID> implements CrudController<T, ID> {
 
-	@Autowired
 	protected CrudService<T, ID> service;
 
 	public Iterable<T> findAll() {
