@@ -1,3 +1,4 @@
 /api-gw/target/
 /fwk-service/target/
+/node_modules/
 /app/

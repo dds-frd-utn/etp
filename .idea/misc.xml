@@ -5,7 +5,6 @@
       <list>
         <option value="$PROJECT_DIR$/api-gw/pom.xml" />
         <option value="$PROJECT_DIR$/mercantilandina/pom.xml" />
-        <option value="$PROJECT_DIR$/fwk-service/pom.xml" />
       </list>
     </option>
   </component>
