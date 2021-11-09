@@ -1,5 +1,8 @@
 package org.utn.frd.dds.etp.entity;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -10,14 +13,18 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="products")
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Product {
 
     @Id
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @JsonAlias("uuid")
     private String uuid;
 
     @Column(name="code", nullable=false, length=50)
+    @JsonAlias("Code")
     private String code;
 
     public String getUuid() {

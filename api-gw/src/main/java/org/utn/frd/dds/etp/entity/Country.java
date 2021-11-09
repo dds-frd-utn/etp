@@ -3,6 +3,9 @@
  */
 package org.utn.frd.dds.etp.entity;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -13,14 +16,18 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="countries")
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Country {
 
     @Id
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @JsonAlias("uuid")
     private String uuid;
 
     @Column(name="name", nullable=false, length=50)
+    @JsonAlias("name")
     private String name;
 
     public String getUuid() {

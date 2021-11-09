@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -17,9 +18,14 @@ public abstract class ServiceImpl<T, ID> {
 
     public abstract CrudRepository getRepository();
 
-    public <S extends T> S save(T object) {
+    public <S extends T> S save(T object) throws EntityExistsException {
 
-        return (S) getRepository().save(object);
+        try {
+            return (S) getRepository().save(object);
+        } catch (Exception e) {
+
+            throw new EntityExistsException();
+        }
     }
 
     public Iterable<T> saveAll(List<T> list) {

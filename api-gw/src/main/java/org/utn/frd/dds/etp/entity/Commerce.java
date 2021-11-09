@@ -3,6 +3,9 @@
  */
 package org.utn.frd.dds.etp.entity;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -14,11 +17,14 @@ import java.util.List;
  */
 @Entity
 @Table(name="commerces")
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Commerce {
 
     @Id
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @JsonAlias("uuid")
     private String uuid;
 
     @OneToMany(mappedBy = "uuid", cascade = CascadeType.ALL, orphanRemoval = true)

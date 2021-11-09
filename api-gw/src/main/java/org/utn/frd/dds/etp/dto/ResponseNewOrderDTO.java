@@ -1,24 +1,17 @@
 package org.utn.frd.dds.etp.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.utn.frd.dds.etp.entity.User;
+import com.fasterxml.jackson.annotation.*;
 
 import java.time.LocalDateTime;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class ResponseOrderDTO {
+@JsonPropertyOrder({ "uuid", "localDateTime" })
+public class ResponseNewOrderDTO {
 
     private String uuid;
 
     private LocalDateTime localDateTime;
-
-    @JsonIgnore(value = true)
-    @JsonProperty(value = "user")
-    private User user;
 
     public String getUuid() {
         return uuid;
@@ -36,20 +29,12 @@ public class ResponseOrderDTO {
         this.localDateTime = localDateTime;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     @Override
     public String toString() {
-        return "ResponseOrderDTO{" +
+        return "ResponseNewOrderDTO{" +
                 "uuid='" + uuid + '\'' +
                 ", localDateTime=" + localDateTime +
-                ", user=" + user +
                 '}';
     }
 }
+

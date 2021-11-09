@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import org.utn.frd.dds.etp.dto.RequestOrderDTO;
+import org.utn.frd.dds.etp.dto.ResponseNewOrderDTO;
 import org.utn.frd.dds.etp.dto.ResponseOrderDTO;
 import org.utn.frd.dds.etp.entity.Order;
 import org.utn.frd.dds.etp.service.impl.OrderServiceImpl;
@@ -38,7 +39,7 @@ public class OrderControllerImpl {
 
 	@RequestMapping(value="/create", method= RequestMethod.POST)
 	@ApiOperation(value = "Crear una orden", notes = "Crear una nueva Orden")
-	public ResponseEntity<ResponseOrderDTO> create(@RequestBody RequestOrderDTO requestOrderDTO, BindingResult bindingResult){
+	public ResponseEntity<ResponseNewOrderDTO> create(@RequestBody RequestOrderDTO requestOrderDTO, BindingResult bindingResult){
 
 		if(!bindingResult.hasErrors()){
 
@@ -46,7 +47,7 @@ public class OrderControllerImpl {
 
 			if(order != null) {
 
-				ResponseOrderDTO responseOrderDTO = OrderUtil.getResponseOrderDTO(order);
+				ResponseNewOrderDTO responseOrderDTO = OrderUtil.getResponseOrderDTO(order);
 
 				return ResponseEntity.ok(responseOrderDTO);
 			}

@@ -2,6 +2,7 @@ package org.utn.frd.dds.etp.util;
 
 import org.utn.frd.dds.etp.dto.RequestOrderDTO;
 import org.utn.frd.dds.etp.dto.RequestOrderItemDTO;
+import org.utn.frd.dds.etp.dto.ResponseNewOrderDTO;
 import org.utn.frd.dds.etp.dto.ResponseOrderDTO;
 import org.utn.frd.dds.etp.entity.Local;
 import org.utn.frd.dds.etp.entity.Order;
@@ -20,16 +21,14 @@ public class OrderUtil {
 
     public static Order getOrder(RequestOrderDTO requestOrderDTO) {
 
-        User user = UserTemplate.getUser();
+        //User user = UserTemplate.getUser();
 
-        Local local = LocalTemplate.getLocal();
+        //Local local = LocalTemplate.getLocal();
 
         Order order = new Order();
         order.setLocalDateTime(LocalDateTime.now());
-        order.setUser(user);
-        order.setLocal(local);
-
-
+        //order.setUser(user);
+        //order.setLocal(local);
 
 
 //        order.setLocal(requestOrderDTO );
@@ -38,16 +37,14 @@ public class OrderUtil {
         return order;
     }
 
-    public static ResponseOrderDTO getResponseOrderDTO(Order order) {
+    public static ResponseNewOrderDTO getResponseOrderDTO(Order order) {
 
-        ResponseOrderDTO responseOrderDTO = new ResponseOrderDTO();
+        ResponseNewOrderDTO responseNewOrderDTO = new ResponseNewOrderDTO();
 
-        responseOrderDTO.setUuid(order.getUuid());
-        // responseOrderDTO.setLocal(order.getLocal());
-        responseOrderDTO.setLocalDateTime(order.getLocalDateTime());
-        responseOrderDTO.setUser(order.getUser());
+        responseNewOrderDTO.setUuid(order.getUuid());
+        responseNewOrderDTO.setLocalDateTime(order.getLocalDateTime());
 
-        return responseOrderDTO;
+        return responseNewOrderDTO;
     }
 
     public static List<ResponseOrderDTO> getListResponseOrderDTO(List<Order> listOrder) {

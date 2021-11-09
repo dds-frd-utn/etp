@@ -9,10 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.utn.frd.dds.etp.dto.RequestMessageDTO;
 import org.utn.frd.dds.etp.dto.RequestUserDTO;
+import org.utn.frd.dds.etp.dto.ResponseMessage;
 import org.utn.frd.dds.etp.dto.ResponseUserDTO;
 import org.utn.frd.dds.etp.entity.User;
 import org.utn.frd.dds.etp.service.impl.UserServiceImpl;
+import org.utn.frd.dds.etp.util.RequestMessageUtil;
 import org.utn.frd.dds.etp.util.UserUtil;
 
 import javax.persistence.EntityNotFoundException;
@@ -31,15 +34,17 @@ public class UserControllerImpl {
 
 	@RequestMapping(value="/create", method= RequestMethod.POST)
 	@ApiOperation(value = "Crear un usuario", notes = "Crear un usuario")
-	public ResponseEntity<User> create(@RequestBody RequestUserDTO requestUserDTO, BindingResult bindingResult){
+	public ResponseEntity create(@RequestBody RequestUserDTO requestUserDTO, BindingResult bindingResult){
 
 		if(!bindingResult.hasErrors()){
 
-			User user = service.save(UserUtil.getUser(requestUserDTO));
-
-			if(user != null) {
+			try {
+				User user = service.save(UserUtil.getUser(requestUserDTO));
 
 				return ResponseEntity.ok(user);
+			} catch (Exception e) {
+
+				return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_EXITS);
 			}
 		}
 
@@ -48,27 +53,30 @@ public class UserControllerImpl {
 
 	@RequestMapping(value="/delete/{uuid}",method = RequestMethod.DELETE)
 	@ApiOperation(value = "Eliminar un usuario", notes = "Eliminar un usuario")
-	public ResponseEntity<String> delete(@PathVariable String uuid){
+	public ResponseEntity delete(@PathVariable String uuid){
 
+		RequestMessageDTO requestMessageDTO = null;
 		try {
+
 			service.deleteById(uuid);
+		} catch (Exception e) {
 
-			return ResponseEntity.ok().build();
-		} catch (EntityNotFoundException e) {
-
-			return ResponseEntity.notFound().build();
+			return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_NOT_EXISTS);
 		}
+
+		return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_DELETE);
 	}
 
 	@RequestMapping(value="/find/{uuid}", method= RequestMethod.POST)
 	@ApiOperation(value = "Buscar usuario por Id", notes = "Buscar usuario por Id")
-	public ResponseEntity<ResponseUserDTO> findUserById(@PathVariable String uuid){
+	public ResponseEntity findUserById(@PathVariable String uuid){
 
 		Optional<User> user = service.findById(uuid);
+		if(user.isPresent())
 
-		ResponseUserDTO responseUserDTO = UserUtil.getResponseUserDTO(user.get());
-
-		return ResponseEntity.ok(responseUserDTO);
+			return ResponseEntity.ok(UserUtil.getResponseUserDTO(user.get()));
+		else
+			return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_NOT_EXISTS);
 	}
 
 	//@RequestMapping(value="/findAll", method= RequestMethod.POST)
