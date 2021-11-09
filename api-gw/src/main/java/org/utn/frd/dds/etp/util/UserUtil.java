@@ -11,7 +11,6 @@ public class UserUtil {
     public static User getUser(RequestUserDTO requestUserDTO) {
 
         User user = new User();
-        user.setCode(requestUserDTO.getCode());
         user.setEmail(requestUserDTO.getEmail());
         user.setFirstName(requestUserDTO.getFirstName());
         user.setLastName(requestUserDTO.getLastName());
