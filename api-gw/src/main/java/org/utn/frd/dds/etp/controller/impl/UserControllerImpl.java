@@ -84,7 +84,7 @@ public class UserControllerImpl {
 		return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_DELETE);
 	}
 
-	@RequestMapping(value="/find/{uuid}", method= RequestMethod.POST)
+	@RequestMapping(value="/find/{uuid}", method= RequestMethod.GET)
 	@ApiOperation(value = "Buscar usuario por Id", notes = "Buscar usuario por Id")
 	public ResponseEntity findUserById(@PathVariable String uuid){
 
