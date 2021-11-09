@@ -7,10 +7,14 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.utn.frd.dds.etp.dto.ResponseMessage;
 import org.utn.frd.dds.etp.dto.ResponseProductDTO;
 import org.utn.frd.dds.etp.entity.Product;
+import org.utn.frd.dds.etp.entity.User;
 import org.utn.frd.dds.etp.service.impl.ProductServiceImpl;
 import org.utn.frd.dds.etp.util.ProductUtil;
+import org.utn.frd.dds.etp.util.RequestMessageUtil;
+import org.utn.frd.dds.etp.util.UserUtil;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -27,34 +31,36 @@ public class ProductControllerImpl {
 
 	// @RequestMapping(value="/create", method= RequestMethod.POST)
 	// @ApiOperation(value = "Crear un producto", notes = "Crear un producto.")
-	public ResponseEntity<Product> create(@RequestBody Product product){
+	public ResponseEntity create(@RequestBody Product product){
 
 		return ResponseEntity.ok(service.save(product));
 	}
 
 	// @RequestMapping(value="/delete/{uuid}",method = RequestMethod.DELETE)
 	// @ApiOperation(value = "Eliminar un producto", notes = "Eliminar un producto.")
-	public ResponseEntity<String> delete(@PathVariable String uuid){
+	public ResponseEntity delete(@PathVariable String uuid){
 
 		try {
+
 			service.deleteById(uuid);
+		} catch (Exception e) {
 
-			return ResponseEntity.ok().build();
-		} catch (EntityNotFoundException e) {
-
-			return ResponseEntity.notFound().build();
+			return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_NOT_EXISTS);
 		}
+
+		return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_DELETE);
 	}
 
-	@RequestMapping(value="/find/{uuid}", method= RequestMethod.POST)
-	@ApiOperation(value = "Buscar producto por Id", notes = "Buscar producto por uuid.")
-	public ResponseEntity<ResponseProductDTO>  findProductById(@PathVariable String uuid){
+//	@RequestMapping(value="/find/{uuid}", method= RequestMethod.GET)
+//	@ApiOperation(value = "Buscar producto por Id", notes = "Buscar producto por uuid.")
+	public ResponseEntity findProductById(@PathVariable String uuid){
 
 		Optional<Product> product = service.findById(uuid);
+		if(product.isPresent())
 
-		ResponseProductDTO responseProductDTO = ProductUtil.getResponseUserDTO(product.get());
-
-		return ResponseEntity.ok(responseProductDTO);
+			return ResponseEntity.ok(ProductUtil.getResponseProductDTO(product.get()));
+		else
+			return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_NOT_EXISTS);
 	}
 
 	@RequestMapping(value="/findAll", method= RequestMethod.POST)

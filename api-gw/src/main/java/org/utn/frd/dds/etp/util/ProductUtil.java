@@ -17,7 +17,7 @@ public class ProductUtil {
         return product;
     }
 
-    public static ResponseProductDTO getResponseUserDTO(Product product) {
+    public static ResponseProductDTO getResponseProductDTO(Product product) {
 
         ResponseProductDTO responseProductDTO = new ResponseProductDTO();
         responseProductDTO.setUuid(product.getUuid());

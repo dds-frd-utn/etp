@@ -18,7 +18,6 @@ import org.utn.frd.dds.etp.service.impl.UserServiceImpl;
 import org.utn.frd.dds.etp.util.RequestMessageUtil;
 import org.utn.frd.dds.etp.util.UserUtil;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -98,7 +97,7 @@ public class UserControllerImpl {
 
 	//@RequestMapping(value="/findAll", method= RequestMethod.POST)
 	//@ApiOperation(value = "Buscar todos los usuarios", notes = "Buscar todos los usuarios.")
-	public List<User> findAllUsers(){
+	public List<User> findAll(){
 
 		return Lists.newArrayList(service.findAll());
 	}
