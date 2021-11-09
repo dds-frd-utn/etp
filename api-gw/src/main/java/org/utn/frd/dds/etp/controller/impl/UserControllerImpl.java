@@ -50,7 +50,7 @@ public class UserControllerImpl {
 		return ResponseEntity.badRequest().build();
 	}
 
-	@RequestMapping(value="/update", method= RequestMethod.POST)
+	@RequestMapping(value="/update", method= RequestMethod.PUT)
 	@ApiOperation(value = "Actualizar un usuario", notes = "Actualizar un usuario")
 	public ResponseEntity create(@RequestBody User userDTO , BindingResult bindingResult){
 
