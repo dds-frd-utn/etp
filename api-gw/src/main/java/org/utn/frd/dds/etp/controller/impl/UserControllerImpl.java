@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.utn.frd.dds.etp.dto.RequestMessageDTO;
 import org.utn.frd.dds.etp.dto.RequestUserDTO;
 import org.utn.frd.dds.etp.dto.ResponseMessage;
-import org.utn.frd.dds.etp.dto.ResponseUserDTO;
 import org.utn.frd.dds.etp.entity.User;
 import org.utn.frd.dds.etp.service.impl.UserServiceImpl;
 import org.utn.frd.dds.etp.util.RequestMessageUtil;
@@ -51,7 +50,7 @@ public class UserControllerImpl {
 
 	@RequestMapping(value="/update", method= RequestMethod.PUT)
 	@ApiOperation(value = "Actualizar un usuario", notes = "Actualizar un usuario")
-	public ResponseEntity create(@RequestBody User userDTO , BindingResult bindingResult){
+	public ResponseEntity update(@RequestBody User userDTO , BindingResult bindingResult){
 
 		if(!bindingResult.hasErrors()){
 
@@ -90,7 +89,7 @@ public class UserControllerImpl {
 		Optional<User> user = service.findById(uuid);
 		if(user.isPresent())
 
-			return ResponseEntity.ok(UserUtil.getResponseUserDTO(user.get()));
+			return ResponseEntity.ok(user);
 		else
 			return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_NOT_EXISTS);
 	}
