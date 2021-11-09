@@ -8,15 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.utn.frd.dds.etp.dto.RequestMessageDTO;
 import org.utn.frd.dds.etp.dto.RequestOrderItemDTO;
+import org.utn.frd.dds.etp.dto.ResponseMessage;
 import org.utn.frd.dds.etp.entity.OrderItem;
+import org.utn.frd.dds.etp.entity.User;
 import org.utn.frd.dds.etp.service.impl.OrderItemServiceImpl;
 import org.utn.frd.dds.etp.util.OrderItemUtil;
+import org.utn.frd.dds.etp.util.RequestMessageUtil;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("order_items")
@@ -34,9 +39,31 @@ public class OrderItemControllerImpl {
 
 		if(!bindingResult.hasErrors()){
 
-			service.save(OrderItemUtil.getOrderItem(requestOrderItemDTO));
+			try {
 
-			return ResponseEntity.ok().build();
+				return ResponseEntity.ok(service.save(OrderItemUtil.getOrderItem(requestOrderItemDTO)));
+			} catch (Exception e) {
+
+				return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_EXITS);
+			}
+		}
+
+		return ResponseEntity.badRequest().build();
+	}
+
+	@RequestMapping(value="/update", method= RequestMethod.PUT)
+	@ApiOperation(value = "Actualizar el item de una ordeno", notes = "Actualizar el item de una orden")
+	public ResponseEntity update(@RequestBody OrderItem orderItemDTO , BindingResult bindingResult){
+
+		if(!bindingResult.hasErrors()){
+
+			try {
+
+				return ResponseEntity.ok(service.save(orderItemDTO));
+			} catch (Exception e) {
+
+				return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_EXITS);
+			}
 		}
 
 		return ResponseEntity.badRequest().build();
@@ -46,32 +73,41 @@ public class OrderItemControllerImpl {
 	@ApiOperation(value = "Eliminar un item de una orden", notes = "Eliminar un item de orden")
 	public ResponseEntity delete(@PathVariable String uuid){
 
-		try{
+		RequestMessageDTO requestMessageDTO = null;
+		try {
+
 			service.deleteById(uuid);
+		} catch (Exception e) {
 
-			return ResponseEntity.ok().build();
-		} catch (EntityNotFoundException e) {
-
-			return ResponseEntity.notFound().build();
+			return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_NOT_EXISTS);
 		}
+
+		return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_DELETE);
 	}
 
-	// @RequestMapping(value="/find/{uuid}", method= RequestMethod.POST)
-	// @ApiOperation(value = "Buscar item de una orden por uuid", notes = "Buscar item de una orden por uuid.")
-	public Optional<OrderItem> findById(@PathVariable String uuid){
+	@RequestMapping(value="/find/{uuid}", method= RequestMethod.GET)
+	@ApiOperation(value = "Buscar un item de una orden por uuid", notes = "Buscar un item de una orden por uuid.")
+	public ResponseEntity findOrderItemById(@PathVariable String uuid){
 
-		return service.findById(uuid);
+		Optional<OrderItem> orderItem = service.findById(uuid);
+		if(orderItem.isPresent())
+
+			return ResponseEntity.ok(orderItem);
+		else
+			return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_NOT_EXISTS);
 	}
 
 	@RequestMapping(value="/findAll/{uuidOrder}", method= RequestMethod.POST)
 	@ApiOperation(value = "Buscar todos los items de una orden", notes = "Buscar todos los items de una orden.")
-	public ResponseEntity<List<OrderItem>> findAll(@PathVariable String uuidOrder){
+	public ResponseEntity findAll(@PathVariable String uuidOrder){
 
-		//List<OrderItem> orderItems = super.service.findById(uuidOrder).stream().collect(Collectors.toList());
+		Optional<OrderItem> orderItems = service.findById(uuidOrder);
 
-		List<OrderItem> orderItems = new ArrayList<>();
+		if(orderItems.isPresent())
 
-		return ResponseEntity.ok(orderItems);
+			return ResponseEntity.ok(orderItems.get());
+		else
+			return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_NOT_EXISTS);
 	}
 
 }
