@@ -9,6 +9,8 @@ import org.utn.frd.dds.etp.repository.OrderItemRepository;
 import org.utn.frd.dds.etp.repository.OrderRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author jonatan.moreira
@@ -29,4 +31,9 @@ public class OrderItemServiceImpl extends ServiceImpl<OrderItem, String> {
     }
 
 
+    public List<OrderItem> findAll(String uuidOrder) {
+
+
+        return null;
+    }
 }

@@ -128,20 +128,4 @@ public class OrderControllerImpl {
 		return QR.createQR(uuid);
 	}
 
-	@RequestMapping(value="/csv/{uuid}",method = RequestMethod.GET)
-	@ApiOperation(value = "Obtener CSV de una orden", notes = "Obtener CSV de una orden")
-	public ResponseEntity<HttpStatus> getCSV(@PathVariable String uuid){
-
-		// orderService.getCSV(uuid);
-
-		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + uuid + ".csv");
-		// defining the custom Content-Type
-		responseHeaders.set(HttpHeaders.CONTENT_TYPE, "text/csv");
-
-		String data = "SKU;COUNT\n11540-1;2\n20322-1;5\n24749-1;3";
-		return new ResponseEntity(data, responseHeaders, HttpStatus.OK);
-
-	}
-
 }

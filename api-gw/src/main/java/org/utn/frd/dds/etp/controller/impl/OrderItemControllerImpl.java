@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -97,17 +99,29 @@ public class OrderItemControllerImpl {
 			return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_NOT_EXISTS);
 	}
 
-	@RequestMapping(value="/findAll/{uuidOrder}", method= RequestMethod.POST)
-	@ApiOperation(value = "Buscar todos los items de una orden", notes = "Buscar todos los items de una orden.")
-	public ResponseEntity findAll(@PathVariable String uuidOrder){
+//	@RequestMapping(value="/findAll/{uuidOrder}", method= RequestMethod.POST)
+//	@ApiOperation(value = "Buscar todos los items de una orden", notes = "Buscar todos los items de una orden.")
+	public List<OrderItem>  findAll(@PathVariable String uuidOrder){
 
-		Optional<OrderItem> orderItems = service.findById(uuidOrder);
-
-		if(orderItems.isPresent())
-
-			return ResponseEntity.ok(orderItems.get());
-		else
-			return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_NOT_EXISTS);
+		return service.findAll(uuidOrder);
 	}
 
+	@RequestMapping(value="/csv/{uuid}",method = RequestMethod.GET)
+	@ApiOperation(value = "Obtener CSV de una orden", notes = "Obtener CSV de una orden")
+	public ResponseEntity<HttpStatus> getCSV(@PathVariable String uuid){
+
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + uuid + ".csv");
+		// defining the custom Content-Type
+		responseHeaders.set(HttpHeaders.CONTENT_TYPE, "text/csv");
+
+		// Armar archivo de la orden
+		List<OrderItem> orderItems = findAll(uuid);
+		StringBuffer data = new StringBuffer();
+		data.append("SKU;COUNT\\n");
+		orderItems.stream().forEach(o -> data.append(o.getProduct().getCode() + "-" + o.getPresentation() + ";" + o.getCount()+ "\n"));
+
+		//String data = "SKU;COUNT\n11540-1;2\n20322-1;5\n24749-1;3";
+		return new ResponseEntity(data, responseHeaders, HttpStatus.OK);
+	}
 }
