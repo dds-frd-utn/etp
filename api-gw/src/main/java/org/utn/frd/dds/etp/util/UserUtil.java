@@ -23,7 +23,6 @@ public class UserUtil {
         ResponseUserDTO responseUserDTO = new ResponseUserDTO();
 
         responseUserDTO.setUuid(user.getUuid());
-        responseUserDTO.setCode(user.getCode());
         responseUserDTO.setEmail(user.getEmail());
         responseUserDTO.setFirstName(user.getFirstName());
         responseUserDTO.setLastName(user.getLastName());

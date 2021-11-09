@@ -10,7 +10,6 @@ public class UserTemplate {
         User user = new User();
 
         user.setUuid("uuid-123");
-        user.setCode("123");
         user.setFirstName("Jonatan");
         user.setLastName("Moreira");
         user.setEmail("moreirajonatan1983@gmail.com");

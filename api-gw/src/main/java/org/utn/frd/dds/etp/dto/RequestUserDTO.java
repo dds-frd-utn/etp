@@ -2,26 +2,18 @@ package org.utn.frd.dds.etp.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonPropertyOrder({ "email", "lastName", "firstName" })
 public class RequestUserDTO {
-
-    private String code;
 
     private String lastName;
 
     private String firstName;
 
     private String email;
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
 
     public String getLastName() {
         return lastName;
@@ -50,7 +42,6 @@ public class RequestUserDTO {
     @Override
     public String toString() {
         return "RequestUserDTO{" +
-                "code='" + code + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", email='" + email + '\'' +
