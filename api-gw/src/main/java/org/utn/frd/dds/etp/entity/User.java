@@ -19,10 +19,6 @@ public class User {
     @JsonAlias("uuid")
     private String uuid;
 
-    @Column(name="code", nullable=true, length=50)
-    @JsonAlias("code")
-    private String code;
-
     @Column(name="lastName", nullable=true, length=50)
     @JsonAlias("lastName")
     private String lastName;
@@ -41,14 +37,6 @@ public class User {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public String getLastName() {
@@ -79,7 +67,6 @@ public class User {
     public String toString() {
         return "User{" +
                 "uuid='" + uuid + '\'' +
-                ", code='" + code + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", email='" + email + '\'' +

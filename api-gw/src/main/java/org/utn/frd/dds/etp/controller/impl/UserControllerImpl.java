@@ -39,9 +39,26 @@ public class UserControllerImpl {
 		if(!bindingResult.hasErrors()){
 
 			try {
-				User user = service.save(UserUtil.getUser(requestUserDTO));
 
-				return ResponseEntity.ok(user);
+				return ResponseEntity.ok(service.save(UserUtil.getUser(requestUserDTO)));
+			} catch (Exception e) {
+
+				return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_EXITS);
+			}
+		}
+
+		return ResponseEntity.badRequest().build();
+	}
+
+	@RequestMapping(value="/update", method= RequestMethod.POST)
+	@ApiOperation(value = "Actualizar un usuario", notes = "Actualizar un usuario")
+	public ResponseEntity create(@RequestBody User userDTO , BindingResult bindingResult){
+
+		if(!bindingResult.hasErrors()){
+
+			try {
+
+				return ResponseEntity.ok(service.save(userDTO));
 			} catch (Exception e) {
 
 				return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_EXITS);
