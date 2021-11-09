@@ -121,6 +121,9 @@ public class OrderItemControllerImpl {
 		data.append("SKU;COUNT\\n");
 		orderItems.stream().forEach(o -> data.append(o.getProduct().getCode() + "-" + o.getPresentation() + ";" + o.getCount()+ "\n"));
 
+		// TODO: Actualizar descargas de CSV para poder cobrarle al cliente
+
+
 		//String data = "SKU;COUNT\n11540-1;2\n20322-1;5\n24749-1;3";
 		return new ResponseEntity(data, responseHeaders, HttpStatus.OK);
 	}
