@@ -3,6 +3,7 @@ package org.utn.frd.dds.etp.entity;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Table(name="users")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonPropertyOrder({ "uuid", "email", "lastName", "firstName" })
 public class User {
 
     @Id
@@ -67,9 +69,9 @@ public class User {
     public String toString() {
         return "User{" +
                 "uuid='" + uuid + '\'' +
+                ", email='" + email + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", firstName='" + firstName + '\'' +
-                ", email='" + email + '\'' +
                 '}';
     }
 }
