@@ -44,7 +44,7 @@ El Sistema utilizará ___Base de Datos H2___ para la persistencia de informació
 
 <div align="center">
 
-![arquitectura](https://64.media.tumblr.com/92f94ab9152ff9f608e0f102dab1c2b5/09b103dd3a303e2a-28/s1280x1920/9bbf30ed6ebb0eaa64c33e0a87efca15031d0aac.png)
+![arquitectura](https://64.media.tumblr.com/86c5b85a4fc1a4d67982ce068cdcc02f/524ab27344ac6d6b-ac/s2048x3072/96aeee5b139f87cd60cbfdfdf9eda2f244655a17.png)
 
 </div>  
   
