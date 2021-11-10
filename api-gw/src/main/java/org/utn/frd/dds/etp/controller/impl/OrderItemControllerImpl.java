@@ -137,8 +137,6 @@ public class OrderItemControllerImpl {
 		data.append("SKU;COUNT\n");
 		orderItems.stream().forEach(o -> data.append(o.getProduct().getCode() + "-" + o.getPresentation() + ";" + o.getCount()+ "\n"));
 
-		log.debug(data.toString());
-
 		return new ResponseEntity(data.toString(), responseHeaders, HttpStatus.OK);
 	}
 }
