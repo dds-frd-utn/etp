@@ -9,6 +9,7 @@ import org.utn.frd.dds.etp.repository.OrderItemRepository;
 import org.utn.frd.dds.etp.repository.OrderRepository;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,9 +32,13 @@ public class OrderItemServiceImpl extends ServiceImpl<OrderItem, String> {
     }
 
 
-    public List<OrderItem> findAll(String uuidOrder) {
+    public List<OrderItem> findAllFilterByOrderUUID(String uuidOrder) {
 
+        Iterable<OrderItem> list = repository.findAllFilterByOrderUUID(uuidOrder);
 
-        return null;
+        List<OrderItem> result = new ArrayList<OrderItem>();
+        list.forEach(result::add);
+
+        return result;
     }
 }

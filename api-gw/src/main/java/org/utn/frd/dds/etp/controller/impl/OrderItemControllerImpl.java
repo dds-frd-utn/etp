@@ -116,9 +116,9 @@ public class OrderItemControllerImpl {
 
 //	@RequestMapping(value="/findAll/{uuidOrder}", method= RequestMethod.POST)
 //	@ApiOperation(value = "Buscar todos los items de una orden", notes = "Buscar todos los items de una orden.")
-	public List<OrderItem>  findAll(@PathVariable String uuidOrder){
+	public List<OrderItem> findAllFilterByOrderUUID(@PathVariable String uuidOrder){
 
-		return service.findAll(uuidOrder);
+		return service.findAllFilterByOrderUUID(uuidOrder);
 	}
 
 	@RequestMapping(value="/csv/{uuid}",method = RequestMethod.GET)
@@ -131,19 +131,22 @@ public class OrderItemControllerImpl {
 		responseHeaders.set(HttpHeaders.CONTENT_TYPE, "text/csv");
 
 		// Armar archivo de la orden
-		List<OrderItem> orderItems = findAll(uuid);
+		List<OrderItem> orderItems = findAllFilterByOrderUUID(uuid);
 		StringBuffer data = new StringBuffer();
 
-//		orderItems.stream().forEach(o -> data.append(o.getProduct().getCode() + "-" + o.getPresentation() + ";" + o.getCount()+ "\n"));
+		data.append("SKU;COUNT\n");
+		orderItems.stream().forEach(o -> data.append(o.getProduct().getCode() + "-" + o.getPresentation() + ";" + o.getCount()+ "\n"));
 
 		// TODO: Actualizar descargas de CSV para poder cobrarle al cliente
 
-		StringBuffer data2 = new StringBuffer();
-		data2.append("SKU;COUNT\n");
-		data2.append("11540-1;2\n");
-		data2.append("20322-1;5\n");
-		data2.append("24749-1;3\n");
+//		StringBuffer data2 = new StringBuffer();
+//		data2.append("SKU;COUNT\n");
+//		data2.append("11540-1;2\n");
+//		data2.append("20322-1;5\n");
+//		data2.append("24749-1;3\n");
 
-		return new ResponseEntity(data2.toString(), responseHeaders, HttpStatus.OK);
+		log.debug(data.toString());
+
+		return new ResponseEntity(data.toString(), responseHeaders, HttpStatus.OK);
 	}
 }
