@@ -23,8 +23,8 @@ public class OrderItem {
     @JsonAlias("uuid")
     private String uuid;
 
-    @JoinColumn(name = "product_uuid")
-    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_uuid", insertable = true, updatable = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST )
     private Product product;
 
     @Column(name="presentation")
@@ -33,8 +33,8 @@ public class OrderItem {
     @Column(name="count")
     private Integer count;
 
-    @JoinColumn(name = "order_uuid")
-    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "order_uuid", insertable = true, updatable = false)
+    @OneToOne(fetch = FetchType.LAZY)
     private Order order;
 
     public String getUuid() {

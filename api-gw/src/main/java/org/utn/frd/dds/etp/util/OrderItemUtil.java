@@ -14,10 +14,17 @@ public class OrderItemUtil {
 
         OrderItem orderItem = new OrderItem();
 
-        // orderItem.setOrder(requestOrderItemDTO.getOrder());
+        Order order = new Order();
+        order.setUuid(requestOrderItemDTO.getUuidOrder());
+
+        orderItem.setOrder(order);
         orderItem.setCount(requestOrderItemDTO.getCount());
         orderItem.setPresentation(requestOrderItemDTO.getPresentation());
-        // orderItem.setProduct(requestOrderItemDTO.getProduct());
+
+        Product product = new Product();
+        product.setCode(requestOrderItemDTO.getProduct().getCode());
+
+        orderItem.setProduct(product);
 
         return orderItem;
     }

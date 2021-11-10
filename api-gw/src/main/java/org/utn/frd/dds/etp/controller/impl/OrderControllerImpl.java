@@ -20,6 +20,7 @@ import org.utn.frd.dds.etp.dto.ResponseNewOrderDTO;
 import org.utn.frd.dds.etp.entity.Order;
 import org.utn.frd.dds.etp.entity.User;
 import org.utn.frd.dds.etp.service.impl.OrderServiceImpl;
+import org.utn.frd.dds.etp.service.impl.UserServiceImpl;
 import org.utn.frd.dds.etp.util.OrderUtil;
 import org.utn.frd.dds.etp.util.QR;
 import org.utn.frd.dds.etp.util.RequestMessageUtil;
@@ -50,7 +51,10 @@ public class OrderControllerImpl {
 			try {
 
 				return ResponseEntity.ok(service.save(OrderUtil.getOrder(requestOrderDTO)));
+
 			} catch (Exception e) {
+
+				e.printStackTrace();
 
 				return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_EXITS);
 			}

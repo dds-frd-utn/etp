@@ -31,8 +31,8 @@ public class Order {
     @OneToOne(fetch = FetchType.EAGER)
     private Local local;
 
-    @JoinColumn(name = "user_uuid", insertable = false, nullable = true)
-    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_uuid", insertable = true, nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
     private User user;
 
     public String getUuid() {

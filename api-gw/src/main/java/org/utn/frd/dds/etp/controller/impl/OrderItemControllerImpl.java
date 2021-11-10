@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.utn.frd.dds.etp.dto.RequestMessageDTO;
 import org.utn.frd.dds.etp.dto.RequestOrderItemDTO;
+import org.utn.frd.dds.etp.dto.RequestUpdateOrderItemDTO;
 import org.utn.frd.dds.etp.dto.ResponseMessage;
 import org.utn.frd.dds.etp.entity.OrderItem;
 import org.utn.frd.dds.etp.entity.User;
@@ -46,6 +47,8 @@ public class OrderItemControllerImpl {
 				return ResponseEntity.ok(service.save(OrderItemUtil.getOrderItem(requestOrderItemDTO)));
 			} catch (Exception e) {
 
+				e.printStackTrace();
+
 				return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_EXITS);
 			}
 		}
@@ -55,13 +58,25 @@ public class OrderItemControllerImpl {
 
 	@RequestMapping(value="/update", method= RequestMethod.PUT)
 	@ApiOperation(value = "Actualizar el item de una ordeno", notes = "Actualizar el item de una orden")
-	public ResponseEntity update(@RequestBody OrderItem orderItemDTO , BindingResult bindingResult){
+	public ResponseEntity update(@RequestBody RequestUpdateOrderItemDTO orderItemDTO , BindingResult bindingResult){
 
 		if(!bindingResult.hasErrors()){
 
 			try {
 
-				return ResponseEntity.ok(service.save(orderItemDTO));
+				Optional<OrderItem> orderItem = service.findById(orderItemDTO.getUuid());
+
+				if(orderItem.isPresent()) {
+
+					OrderItem oi = orderItem.get();
+					oi.setPresentation(orderItemDTO.getPresentation());
+					oi.setCount(orderItemDTO.getCount());
+
+					return ResponseEntity.ok(service.save(oi));
+				} else {
+					return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_EXITS);
+				}
+
 			} catch (Exception e) {
 
 				return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_EXITS);

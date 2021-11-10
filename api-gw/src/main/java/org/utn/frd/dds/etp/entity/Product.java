@@ -23,7 +23,7 @@ public class Product {
     @JsonAlias("uuid")
     private String uuid;
 
-    @Column(name="code", nullable=false, length=50)
+    @Column(name="code", nullable=false, length=50, unique = false)
     @JsonAlias("Code")
     private String code;
 

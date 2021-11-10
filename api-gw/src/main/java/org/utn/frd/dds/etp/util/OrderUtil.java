@@ -21,18 +21,13 @@ public class OrderUtil {
 
     public static Order getOrder(RequestOrderDTO requestOrderDTO) {
 
-        //User user = UserTemplate.getUser();
-
-        //Local local = LocalTemplate.getLocal();
-
         Order order = new Order();
         order.setLocalDateTime(LocalDateTime.now());
-        //order.setUser(user);
-        //order.setLocal(local);
 
+        User user = new User();
+        user.setUuid(requestOrderDTO.getUserUUID());
 
-//        order.setLocal(requestOrderDTO );
-//        order.setUser(requestOrderDTO.getUser());
+        order.setUser(user);
 
         return order;
     }

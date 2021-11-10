@@ -41,6 +41,8 @@ public class UserControllerImpl {
 				return ResponseEntity.ok(service.save(UserUtil.getUser(requestUserDTO)));
 			} catch (Exception e) {
 
+				e.printStackTrace();
+
 				return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_EXITS);
 			}
 		}
