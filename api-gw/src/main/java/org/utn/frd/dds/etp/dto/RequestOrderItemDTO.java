@@ -8,17 +8,27 @@ import org.utn.frd.dds.etp.entity.Product;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class RequestOrderItemDTO {
 
-    private Product product;
+    private String uuidOrder;
+
+    private RequestProductDTO product;
 
     private Integer presentation;
 
     private Integer count;
 
-    public Product getProduct() {
+    public RequestProductDTO getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public String getUuidOrder() {
+        return uuidOrder;
+    }
+
+    public void setUuidOrder(String uuidOrder) {
+        this.uuidOrder = uuidOrder;
+    }
+
+    public void setProduct(RequestProductDTO product) {
         this.product = product;
     }
 
@@ -41,7 +51,8 @@ public class RequestOrderItemDTO {
     @Override
     public String toString() {
         return "RequestOrderItemDTO{" +
-                "product=" + product +
+                "uuidOrder='" + uuidOrder + '\'' +
+                ", product=" + product +
                 ", presentation=" + presentation +
                 ", count=" + count +
                 '}';

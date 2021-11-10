@@ -59,8 +59,8 @@ public class OrderControllerImpl {
 		return ResponseEntity.badRequest().build();
 	}
 
-	@RequestMapping(value="/update", method= RequestMethod.PUT)
-	@ApiOperation(value = "Actualizar un orden", notes = "Actualizar un orden")
+//	@RequestMapping(value="/update", method= RequestMethod.PUT)
+//	@ApiOperation(value = "Actualizar un orden", notes = "Actualizar un orden")
 	public ResponseEntity update(@RequestBody Order orderDTO , BindingResult bindingResult){
 
 		if(!bindingResult.hasErrors()){
@@ -76,8 +76,6 @@ public class OrderControllerImpl {
 
 		return ResponseEntity.badRequest().build();
 	}
-
-
 
 	@RequestMapping(value="/delete/{uuid}",method = RequestMethod.DELETE)
 	@ApiOperation(value = "Eliminar una orden", notes = "Eliminar una Orden")
@@ -95,10 +93,9 @@ public class OrderControllerImpl {
 		return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_DELETE);
 	}
 
-	@RequestMapping(value="/find/{uuid}", method= RequestMethod.POST)
+	@RequestMapping(value="/find/{uuid}", method= RequestMethod.GET)
 	@ApiOperation(value = "Buscar Orden por Id", notes = "Buscar Orden por Id")
 	public ResponseEntity findOrderById(@PathVariable String uuid){
-
 
 		Optional<Order> order = service.findById(uuid);
 		if(order.isPresent())
@@ -119,13 +116,18 @@ public class OrderControllerImpl {
 		return ResponseEntity.ok(orders);
 	}
 
-	@RequestMapping(value="/qr/{uuid}",method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
+	@RequestMapping(value="/qr/{uuid}",method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.IMAGE_PNG_VALUE})
 	@ApiOperation(value = "Obtener codigo QR", notes = "Obtener codigo QR")
-	public BufferedImage getQR(@PathVariable String uuid) throws WriterException {
+	public ResponseEntity getQR(@PathVariable String uuid){
 
-		// OrderService.getQR(uuid);
+		Optional<Order> order = service.findById(uuid);
+		if(order.isPresent()) {
 
-		return QR.createQR(uuid);
+			return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(QR.createQR(uuid));
+		} else {
+
+			return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_NOT_EXISTS);
+		}
 	}
 
 }
