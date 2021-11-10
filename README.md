@@ -34,7 +34,9 @@ Al abrir el proyecto podemos ver dos módulos:
   
 El sistema será una aplicación ___Cliente-Servidor___. Tendrá 2 clientes que consuman sus servicios: 
 - Por un lado, una aplicación desarrollada para celulares con ___Sistema Operativo Android___, y 
-- Por otro, la aplicación de punto de venta que consulte por una orden. El servidor será una aplicación de tipo ___REST API___ desarrollada con ___Spring Boot___ montada sobre un servidor ___Apache Tomcat___. 
+- Por otro, la aplicación de punto de venta que consulte por una orden. 
+
+El servidor será una aplicación de tipo ___REST API___ desarrollada con ___Spring Boot___ montada sobre un servidor ___Apache Tomcat___. 
 
 **Spring Boot** arma la arquitectura del proyecto de tal manera que no es necesario que tengamos que desarrollar y armar un servidor, ya que el mismo software lo crea por sí solo. Por ende, cada proyecto va a tener un servidor. 
 
