@@ -2,3 +2,4 @@
 /fwk-service/target/
 /node_modules/
 /app/
+.idea/libraries/Maven__com_microsoft_sqlserver_mssql_jdbc_9_4_0_jre8.xml

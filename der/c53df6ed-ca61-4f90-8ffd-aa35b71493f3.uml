@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>c53df6ed-ca61-4f90-8ffd-aa35b71493f3</OriginalElement>
+  <nodes>
+    <node x="-297.0" y="161.5">c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.locals</node>
+    <node x="359.0" y="411.5">c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.order_items</node>
+    <node x="-641.5" y="24.000000000000007">c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.commerces</node>
+    <node x="-213.5" y="373.5">c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.cities</node>
+    <node x="630.0" y="233.5">c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.products</node>
+    <node x="-133.5" y="695.5">c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.countries</node>
+    <node x="72.0" y="351.5">c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.users</node>
+    <node x="-641.5" y="530.5">c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.city_types</node>
+    <node x="32.0" y="178.5">c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.orders</node>
+    <node x="-173.5" y="546.5">c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.states</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.cities" target="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.city_types" relationship="REFERENCES">
+      <point x="-111.0" y="30.5" />
+      <point x="-545.0" y="470.5" />
+      <point x="0.0" y="-42.5" />
+    </edge>
+    <edge source="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.order_items" target="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.orders" relationship="REFERENCES">
+      <point x="-50.0" y="-30.5" />
+      <point x="417.0" y="223.5" />
+      <point x="352.5" y="223.5" />
+      <point x="352.5" y="158.5" />
+      <point x="143.5" y="158.5" />
+      <point x="0.0" y="-66.5" />
+    </edge>
+    <edge source="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.order_items" target="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.products" relationship="REFERENCES">
+      <point x="0.0" y="78.5" />
+      <point x="467.0" y="364.0" />
+      <point x="705.5" y="364.0" />
+      <point x="0.0" y="-42.5" />
+    </edge>
+    <edge source="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.locals" target="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.commerces" relationship="REFERENCES">
+      <point x="0.0" y="-78.5" />
+      <point x="-180.0" y="135.75" />
+      <point x="-566.0" y="135.75" />
+      <point x="0.0" y="30.0" />
+    </edge>
+    <edge source="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.orders" target="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.users" relationship="REFERENCES">
+      <point x="23.0" y="66.5" />
+      <point x="0.0" y="-66.5" />
+    </edge>
+    <edge source="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.orders" target="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.locals" relationship="REFERENCES">
+      <point x="-111.5" y="-5.0" />
+      <point x="117.0" y="0.0" />
+    </edge>
+    <edge source="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.locals" target="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.cities" relationship="REFERENCES">
+      <point x="80.0" y="78.5" />
+      <point x="0.0" y="-66.5" />
+    </edge>
+    <edge source="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.cities" target="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.states" relationship="REFERENCES">
+      <point x="34.0" y="66.5" />
+      <point x="0.0" y="-54.5" />
+    </edge>
+    <edge source="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.states" target="c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.countries" relationship="REFERENCES">
+      <point x="8.0" y="54.5" />
+      <point x="0.0" y="-42.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="60.0" y="381.0" />
+  <SelectedNodes>
+    <node>c53df6ed-ca61-4f90-8ffd-aa35b71493f3.TABLE:master.etp.city_types</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
