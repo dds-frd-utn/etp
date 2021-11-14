@@ -23,8 +23,9 @@ public class OrderItem {
     @JsonAlias("uuid")
     private String uuid;
 
-    @JoinColumn(name = "product_uuid", insertable = true, updatable = false)
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST )
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "code", insertable = true, updatable = true  )
     private Product product;
 
     @Column(name="presentation")

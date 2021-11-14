@@ -17,7 +17,9 @@ import org.utn.frd.dds.etp.dto.ResponseMessage;
 import org.utn.frd.dds.etp.entity.OrderItem;
 import org.utn.frd.dds.etp.entity.User;
 import org.utn.frd.dds.etp.service.impl.OrderItemServiceImpl;
+import org.utn.frd.dds.etp.service.impl.ProductServiceImpl;
 import org.utn.frd.dds.etp.util.OrderItemUtil;
+import org.utn.frd.dds.etp.util.ProductUtil;
 import org.utn.frd.dds.etp.util.RequestMessageUtil;
 
 import javax.persistence.EntityNotFoundException;
@@ -36,6 +38,9 @@ public class OrderItemControllerImpl {
 	@Autowired
 	OrderItemServiceImpl service;
 
+	@Autowired
+	ProductServiceImpl productService;
+
 	@RequestMapping(value="/add", method= RequestMethod.POST)
 	@ApiOperation(value = "Agregar un item a una orden", notes = "Agregar un item a una orden")
 	public ResponseEntity create(@RequestBody RequestOrderItemDTO requestOrderItemDTO, BindingResult bindingResult){
@@ -43,6 +48,8 @@ public class OrderItemControllerImpl {
 		if(!bindingResult.hasErrors()){
 
 			try {
+
+				productService.save(ProductUtil.getProduct(requestOrderItemDTO.getProduct()));
 
 				return ResponseEntity.ok(service.save(OrderItemUtil.getOrderItem(requestOrderItemDTO)));
 			} catch (Exception e) {

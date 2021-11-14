@@ -17,23 +17,13 @@ import javax.persistence.*;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Product {
 
-    @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
-    @JsonAlias("uuid")
-    private String uuid;
+    @JsonAlias("description")
+    private String description;
 
-    @Column(name="code", nullable=false, length=50, unique = false)
+    @Id
+    @Column(name="code", nullable=false, length=50, unique = true)
     @JsonAlias("Code")
     private String code;
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
 
     public String getCode() {
         return code;
@@ -43,10 +33,18 @@ public class Product {
         this.code = code;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
-                "uuid='" + uuid + '\'' +
+                "description='" + description + '\'' +
                 ", code='" + code + '\'' +
                 '}';
     }

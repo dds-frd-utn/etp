@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Entity
 @Table(name="users")
@@ -30,6 +31,7 @@ public class User {
     private String firstName;
 
     @Column(name="email", nullable=true, length=50, unique = true)
+    @Email
     @JsonAlias("email")
     private String email;
 
