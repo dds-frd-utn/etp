@@ -17,13 +17,13 @@ import javax.persistence.*;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Product {
 
-    @JsonAlias("description")
-    private String description;
-
     @Id
     @Column(name="code", nullable=false, length=50, unique = true)
     @JsonAlias("Code")
     private String code;
+
+    @JsonAlias("description")
+    private String description;
 
     public String getCode() {
         return code;

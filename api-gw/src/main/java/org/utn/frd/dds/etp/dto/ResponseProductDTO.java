@@ -7,16 +7,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ResponseProductDTO {
 
-    private String uuid;
+    private String description;
 
     private String code;
 
-    public String getUuid() {
-        return uuid;
+    public String getDescription() {
+        return description;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getCode() {
@@ -30,7 +30,7 @@ public class ResponseProductDTO {
     @Override
     public String toString() {
         return "ResponseProductDTO{" +
-                "uuid='" + uuid + '\'' +
+                "uuid='" + description + '\'' +
                 ", code='" + code + '\'' +
                 '}';
     }
