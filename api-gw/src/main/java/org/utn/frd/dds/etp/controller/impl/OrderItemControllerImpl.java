@@ -14,19 +14,20 @@ import org.utn.frd.dds.etp.dto.RequestMessageDTO;
 import org.utn.frd.dds.etp.dto.RequestOrderItemDTO;
 import org.utn.frd.dds.etp.dto.RequestUpdateOrderItemDTO;
 import org.utn.frd.dds.etp.dto.ResponseMessage;
+import org.utn.frd.dds.etp.entity.Consumption;
+import org.utn.frd.dds.etp.entity.Order;
 import org.utn.frd.dds.etp.entity.OrderItem;
 import org.utn.frd.dds.etp.entity.User;
+import org.utn.frd.dds.etp.service.impl.ConsumptionServiceImpl;
 import org.utn.frd.dds.etp.service.impl.OrderItemServiceImpl;
 import org.utn.frd.dds.etp.service.impl.ProductServiceImpl;
 import org.utn.frd.dds.etp.util.OrderItemUtil;
 import org.utn.frd.dds.etp.util.ProductUtil;
 import org.utn.frd.dds.etp.util.RequestMessageUtil;
 
-import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("order_items")
@@ -37,6 +38,9 @@ public class OrderItemControllerImpl {
 
 	@Autowired
 	OrderItemServiceImpl service;
+
+	@Autowired
+	ConsumptionServiceImpl consumptionService;
 
 	@Autowired
 	ProductServiceImpl productService;
@@ -143,6 +147,21 @@ public class OrderItemControllerImpl {
 
 		data.append("SKU;COUNT\n");
 		orderItems.stream().forEach(o -> data.append(o.getProduct().getCode() + "-" + o.getPresentation() + ";" + o.getCount()+ "\n"));
+
+		// Guardo el registro de quien consumio el servicio.
+		Consumption consumption = new Consumption();
+
+//		Order order = new Order();
+//		order.setUuid("ff8081817d1d027c017d1d033ade0001");
+//
+//		consumption.setOrder(order);
+		consumption.setLocalDateTime(LocalDateTime.now());
+
+//		User user = new User();
+//		user.setUuid("ff8081817d1d027c017d1d02b5df0000");
+//
+//		consumption.setUser(user);
+		consumptionService.save(consumption);
 
 		return new ResponseEntity(data.toString(), responseHeaders, HttpStatus.OK);
 	}

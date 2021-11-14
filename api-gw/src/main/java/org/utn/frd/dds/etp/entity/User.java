@@ -35,6 +35,17 @@ public class User {
     @JsonAlias("email")
     private String email;
 
+    public User() {
+
+    }
+
+    public User(String uuid, String lastName, String firstName, String email) {
+        this.uuid = uuid;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.email = email;
+    }
+
     public String getUuid() {
         return uuid;
     }
