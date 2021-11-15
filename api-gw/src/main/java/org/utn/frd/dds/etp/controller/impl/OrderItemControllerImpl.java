@@ -152,7 +152,7 @@ public class OrderItemControllerImpl {
 		Consumption consumption = new Consumption();
 
 		Order order = new Order();
-		order.setUuid("ff8081817d219629017d21a007bc0003");
+		order.setUuid(uuid);
 		consumption.setOrder(order);
 
 		consumption.setLocalDateTime(LocalDateTime.now());
