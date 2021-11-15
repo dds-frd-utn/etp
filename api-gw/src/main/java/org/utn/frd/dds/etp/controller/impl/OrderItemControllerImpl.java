@@ -151,10 +151,10 @@ public class OrderItemControllerImpl {
 		// Guardo el registro de quien consumio el servicio.
 		Consumption consumption = new Consumption();
 
-//		Order order = new Order();
-//		order.setUuid("ff8081817d1d027c017d1d033ade0001");
-//
-//		consumption.setOrder(order);
+		Order order = new Order();
+		order.setUuid("ff8081817d219629017d21a007bc0003");
+		consumption.setOrder(order);
+
 		consumption.setLocalDateTime(LocalDateTime.now());
 
 //		User user = new User();

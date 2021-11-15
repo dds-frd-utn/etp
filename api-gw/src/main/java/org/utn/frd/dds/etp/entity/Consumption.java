@@ -25,7 +25,7 @@ public class Consumption {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "order_uuid", insertable = false, updatable = false)
+    @JoinColumn(name = "order_uuid", insertable = true, updatable = false)
     private Order order;
 
     @Column(name="localDateTime")
