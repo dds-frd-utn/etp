@@ -18,6 +18,9 @@ import org.utn.frd.dds.etp.entity.Consumption;
 import org.utn.frd.dds.etp.entity.Order;
 import org.utn.frd.dds.etp.entity.OrderItem;
 import org.utn.frd.dds.etp.entity.User;
+import org.utn.frd.dds.etp.entity.builder.ConsumptionBuilder;
+import org.utn.frd.dds.etp.entity.builder.OrderBuilder;
+import org.utn.frd.dds.etp.entity.builder.UserBuilder;
 import org.utn.frd.dds.etp.service.impl.ConsumptionServiceImpl;
 import org.utn.frd.dds.etp.service.impl.OrderItemServiceImpl;
 import org.utn.frd.dds.etp.service.impl.ProductServiceImpl;
@@ -148,19 +151,16 @@ public class OrderItemControllerImpl {
 		data.append("SKU;COUNT\n");
 		orderItems.stream().forEach(o -> data.append(o.getProduct().getCode() + "-" + o.getPresentation() + ";" + o.getCount()+ "\n"));
 
+		User user = new UserBuilder()
+				.withUuid("ff8081817d1d027c017d1d02b5df0000")
+				.build();
+
 		// Guardo el registro de quien consumio el servicio.
-		Consumption consumption = new Consumption();
+		Consumption consumption = new ConsumptionBuilder()
+				.withOrder(new OrderBuilder().withUuid(uuid).build())
+				.withLocalDateTime(LocalDateTime.now())
+				.build();
 
-		Order order = new Order();
-		order.setUuid(uuid);
-		consumption.setOrder(order);
-
-		consumption.setLocalDateTime(LocalDateTime.now());
-
-//		User user = new User();
-//		user.setUuid("ff8081817d1d027c017d1d02b5df0000");
-//
-//		consumption.setUser(user);
 		consumptionService.save(consumption);
 
 		return new ResponseEntity(data.toString(), responseHeaders, HttpStatus.OK);
