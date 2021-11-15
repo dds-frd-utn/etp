@@ -38,6 +38,17 @@ public class OrderItem {
     @OneToOne(fetch = FetchType.LAZY)
     private Order order;
 
+    public OrderItem() {
+    }
+
+    public OrderItem(String uuid, Product product, Integer presentation, Integer count, Order order) {
+        this.uuid = uuid;
+        this.product = product;
+        this.presentation = presentation;
+        this.count = count;
+        this.order = order;
+    }
+
     public String getUuid() {
         return uuid;
     }
