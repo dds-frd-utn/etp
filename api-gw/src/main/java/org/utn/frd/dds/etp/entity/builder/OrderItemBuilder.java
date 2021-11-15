@@ -21,27 +21,27 @@ public class OrderItemBuilder {
         return new OrderItem(uuid, product, presentation, count, order);
     }
 
-    public OrderItemBuilder setUuid(String uuid) {
+    public OrderItemBuilder withUuid(String uuid) {
         this.uuid = uuid;
         return this;
     }
 
-    public OrderItemBuilder setProduct(Product product) {
+    public OrderItemBuilder withProduct(Product product) {
         this.product = product;
         return this;
     }
 
-    public OrderItemBuilder setPresentation(Integer presentation) {
+    public OrderItemBuilder withPresentation(Integer presentation) {
         this.presentation = presentation;
         return this;
     }
 
-    public OrderItemBuilder setCount(Integer count) {
+    public OrderItemBuilder withCount(Integer count) {
         this.count = count;
         return this;
     }
 
-    public OrderItemBuilder setOrder(Order order) {
+    public OrderItemBuilder withOrder(Order order) {
         this.order = order;
         return this;
     }
