@@ -32,6 +32,16 @@ public class Consumption {
     @JsonAlias("localDateTime")
     private LocalDateTime localDateTime;
 
+    public Consumption() {
+    }
+
+    public Consumption(String uuid, User user, Order order, LocalDateTime localDateTime) {
+        this.uuid = uuid;
+        this.user = user;
+        this.order = order;
+        this.localDateTime = localDateTime;
+    }
+
     public String getUuid() {
         return uuid;
     }

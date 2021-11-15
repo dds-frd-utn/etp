@@ -35,6 +35,16 @@ public class Order {
     @OneToOne(fetch = FetchType.LAZY)
     private User user;
 
+    public Order() {
+    }
+
+    public Order(String uuid, LocalDateTime localDateTime, Local local, User user) {
+        this.uuid = uuid;
+        this.localDateTime = localDateTime;
+        this.local = local;
+        this.user = user;
+    }
+
     public String getUuid() {
         return uuid;
     }

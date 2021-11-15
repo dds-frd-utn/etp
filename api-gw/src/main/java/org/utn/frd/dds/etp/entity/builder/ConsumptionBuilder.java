@@ -15,10 +15,10 @@ public class ConsumptionBuilder {
     private Order order;
 
     private LocalDateTime localDateTime;
-    
+
     public Consumption build(){
 
-        return new Consumption();
+        return new Consumption(uuid, user, order, localDateTime);
     }
 
     public ConsumptionBuilder withUuid(String uuid) {

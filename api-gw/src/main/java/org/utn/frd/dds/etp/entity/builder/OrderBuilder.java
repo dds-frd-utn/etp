@@ -18,7 +18,7 @@ public class OrderBuilder {
 
     public Order build(){
 
-        return new Order();
+        return new Order(uuid, localDateTime, local, user);
     }
 
     public OrderBuilder withUuid(String uuid) {

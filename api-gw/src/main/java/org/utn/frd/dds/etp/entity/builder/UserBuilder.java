@@ -7,15 +7,15 @@ public class UserBuilder {
 
     private String uuid;
 
-    private String lastName;
-
     private String firstName;
+
+    private String lastName;
 
     private String email;
 
     public User build(){
 
-        return new User();
+        return new User(uuid, firstName, lastName, email);
     }
 
     public UserBuilder withUuid(String uuid) {
@@ -23,13 +23,13 @@ public class UserBuilder {
         return this;
     }
 
-    public UserBuilder withLastName(String lastName) {
-        this.lastName = lastName;
+    public UserBuilder withFirstName(String firstName) {
+        this.firstName = firstName;
         return this;
     }
 
-    public UserBuilder withFirstName(String firstName) {
-        this.firstName = firstName;
+    public UserBuilder withLastName(String lastName) {
+        this.lastName = lastName;
         return this;
     }
 

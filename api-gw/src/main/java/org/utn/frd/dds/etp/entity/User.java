@@ -36,7 +36,6 @@ public class User {
     private String email;
 
     public User() {
-
     }
 
     public User(String uuid, String lastName, String firstName, String email) {
