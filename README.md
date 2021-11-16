@@ -14,9 +14,7 @@ Para esta última etapa nos enfocamos en realizar la implementación de la arqui
   + Agregar productos a dicha orden.
   + Generar el QR con el archivo CSV.
 
-Al abrir el proyecto podemos ver:
-
-1. Es el módulo que contiene las entradas, me va a indicar qué es lo que tengo que llamar para crear los distintas servicios previamente mencionados.
+Al abrir el proyecto podemos ver el módulo que contiene las entradas, el cual me va a indicar qué es lo que tengo que llamar para crear los distintas servicios previamente mencionados.
 
 <div align="center">
 
