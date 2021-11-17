@@ -14,21 +14,13 @@ Para esta última etapa nos enfocamos en realizar la implementación de la arqui
   + Agregar productos a dicha orden.
   + Generar el QR con el archivo CSV.
 
-Al abrir el proyecto podemos ver dos módulos:
-
-1. Es el módulo que contiene las entradas, me va a indicar qué es lo que tengo que llamar para crear los distintas servicios previamente mencionados.
+Al abrir el proyecto podemos ver el módulo que contiene las entradas, el cual me va a indicar qué es lo que tengo que llamar para crear los distintas servicios previamente mencionados.
 
 <div align="center">
 
 ![api-gw](https://64.media.tumblr.com/142317600323c84b8c1d3bf6fd45e508/09b103dd3a303e2a-6c/s400x600/ccd0b88442a5832590a69c311b80ffc4758cdc82.png)
 
 </div>  
-  
-2. Y un framework que se encarga de la parte de persistencia, este módulo se va a encargar de toda la parte del guardado de nuestra información.
-
-<div align="center">  
-  
-![fwk](https://64.media.tumblr.com/1bf02339becaf0f38c5214d41392dfa2/09b103dd3a303e2a-40/s400x600/28bd75d2e82b91c01daa1a8a4c907aa82fd3b634.png)
 
 </div>  
   
