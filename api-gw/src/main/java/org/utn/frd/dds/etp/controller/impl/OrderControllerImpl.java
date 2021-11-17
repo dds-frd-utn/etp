@@ -113,11 +113,9 @@ public class OrderControllerImpl {
 
 	@RequestMapping(value="/findAll/{uuid}", method= RequestMethod.GET)
 	@ApiOperation(value = "Buscar todas las ordenes de un usuario", notes = "Buscar todas las ordenes de un usuario.")
-	public ResponseEntity<List<Order>>findAll(@PathVariable String uuid){
+	public ResponseEntity<List<Order>>findAll(@PathVariable String userUUID){
 
-		// List<Order> orders = super.service.findById(uuid).stream().collect(Collectors.toList());
-
-		List<Order> orders = new ArrayList<>();
+		List<Order> orders = service.findAllFilterByUserUUID(userUUID);
 
 		return ResponseEntity.ok(orders);
 	}
