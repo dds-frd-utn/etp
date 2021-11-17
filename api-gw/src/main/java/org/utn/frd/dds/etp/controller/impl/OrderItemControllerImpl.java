@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -137,7 +138,7 @@ public class OrderItemControllerImpl {
 
 	@RequestMapping(value="/csv/{uuid}",method = RequestMethod.GET)
 	@ApiOperation(value = "Obtener CSV de una orden", notes = "Obtener CSV de una orden")
-	public ResponseEntity<HttpStatus> getCSV(@PathVariable String uuid){
+	public ResponseEntity<HttpStatus> getCSV(@PathVariable String uuid, @Param("commerceUUID") String commerceUUID){
 
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + uuid + ".csv");
@@ -151,14 +152,19 @@ public class OrderItemControllerImpl {
 		data.append("SKU;COUNT\n");
 		orderItems.stream().forEach(o -> data.append(o.getProduct().getCode() + "-" + o.getPresentation() + ";" + o.getCount()+ "\n"));
 
-		User user = new UserBuilder()
-				.withUuid("ff8081817d1d027c017d1d02b5df0000")
-				.build();
+
+		User user = null;
+
+		if(commerceUUID!=null)
+			user = new UserBuilder()
+					.withUuid(commerceUUID)
+					.build();
 
 		// Guardo el registro de quien consumio el servicio.
 		Consumption consumption = new ConsumptionBuilder()
 				.withOrder(new OrderBuilder().withUuid(uuid).build())
 				.withLocalDateTime(LocalDateTime.now())
+				.withUser(user)
 				.build();
 
 		consumptionService.save(consumption);

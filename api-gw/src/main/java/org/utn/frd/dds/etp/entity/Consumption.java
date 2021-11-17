@@ -21,7 +21,7 @@ public class Consumption {
     private String uuid;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "user_uuid", insertable = false, updatable = false)
+    @JoinColumn(name = "user_uuid", insertable = true, updatable = false)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)

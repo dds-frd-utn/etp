@@ -7,16 +7,17 @@ import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.awt.image.BufferedImage;
 
 public class QR {
 
-    public static BufferedImage createQR(String orderUUID) {
+    public static BufferedImage createQR(String orderUUID, String serverDdnsName, String serverPort, String params) {
 
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
 
-        String url = "http://etp2021.ddns.net:8080" + "/etp/order_items/csv/" + orderUUID;
+        String url = "http://" + serverDdnsName + ":" + serverPort + "/etp/order_items/csv/" + orderUUID + params;
 
         BitMatrix bitMatrix = null;
 

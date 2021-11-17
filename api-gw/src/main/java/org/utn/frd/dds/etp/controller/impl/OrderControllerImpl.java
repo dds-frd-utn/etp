@@ -1,13 +1,11 @@
 package org.utn.frd.dds.etp.controller.impl;
 
-import com.google.zxing.WriterException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -16,18 +14,12 @@ import org.springframework.web.bind.annotation.*;
 import org.utn.frd.dds.etp.dto.RequestMessageDTO;
 import org.utn.frd.dds.etp.dto.RequestOrderDTO;
 import org.utn.frd.dds.etp.dto.ResponseMessage;
-import org.utn.frd.dds.etp.dto.ResponseNewOrderDTO;
 import org.utn.frd.dds.etp.entity.Order;
-import org.utn.frd.dds.etp.entity.User;
 import org.utn.frd.dds.etp.service.impl.OrderServiceImpl;
-import org.utn.frd.dds.etp.service.impl.UserServiceImpl;
 import org.utn.frd.dds.etp.util.OrderUtil;
 import org.utn.frd.dds.etp.util.QR;
 import org.utn.frd.dds.etp.util.RequestMessageUtil;
-import org.utn.frd.dds.etp.util.UserUtil;
 
-import javax.persistence.EntityNotFoundException;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,6 +33,16 @@ public class OrderControllerImpl {
 
     @Autowired
 	OrderServiceImpl service;
+
+	@Value( "${server.port}" )
+	private String serverPort;
+
+	@Value( "${server.ddnsName}" )
+	private String serverDdnsName;
+
+
+	@Value( "${app.userCommerceUUID}" )
+	private String appUserCommerceUUID;
 
 	@RequestMapping(value="/create", method= RequestMethod.POST)
 	@ApiOperation(value = "Crear una orden", notes = "Crear una nueva Orden")
@@ -127,7 +129,9 @@ public class OrderControllerImpl {
 		Optional<Order> order = service.findById(uuid);
 		if(order.isPresent()) {
 
-			return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(QR.createQR(uuid));
+			appUserCommerceUUID = (appUserCommerceUUID.isEmpty())?"":appUserCommerceUUID;
+
+			return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(QR.createQR(uuid, serverDdnsName, serverPort, appUserCommerceUUID));
 		} else {
 
 			return RequestMessageUtil.getResponseEntityOk(ResponseMessage.ENTITY_NOT_EXISTS);
