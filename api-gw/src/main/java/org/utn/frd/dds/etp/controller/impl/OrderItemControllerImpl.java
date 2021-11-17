@@ -150,7 +150,7 @@ public class OrderItemControllerImpl {
 		StringBuffer data = new StringBuffer();
 
 		data.append("SKU;COUNT\n");
-		orderItems.stream().forEach(o -> data.append(o.getProduct().getCode() + "-" + o.getPresentation() + ";" + o.getCount()+ "\n"));
+		orderItems.stream().forEach(o -> data.append(o.getProduct().getCode() + "-" + o.getPresentation() + ";" + o.getCount()+ "qqq\n"));
 
 
 		User user = null;
